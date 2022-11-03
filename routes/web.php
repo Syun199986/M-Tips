@@ -14,4 +14,7 @@ use App\Http\Controllers\QuestionController;
 |
 */
 
-Route::get('/home',[QuestionController::class, 'index']);
+// Route::get('/home',[QuestionController::class, 'index']);
+Route::get('/', function() {
+    return view('home');
+});

@@ -44,5 +44,14 @@
               </div>
             </nav>
         </header>
+        <main>
+          <select class="form-select w-auto" aria-label="Default select example">
+            <option selected>▼並べ替え</option>
+            <option value="1">新着順</option>
+            <option value="2">気になる!が多い順</option>
+            <option value="3">回答数順</option>
+          </select>   
+
+        </main>
     </body>
 </html>
