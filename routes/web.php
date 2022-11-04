@@ -18,3 +18,7 @@ use App\Http\Controllers\QuestionController;
 Route::get('/', function() {
     return view('home');
 });
+
+Route::get('/post_question', function() {
+    return view('post_question');
+});
