@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\TipController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +15,9 @@ use App\Http\Controllers\QuestionController;
 */
 
 // Route::get('/home',[QuestionController::class, 'index']);
-Route::get('/', function() {
-    return view('home');
-});
-
-Route::get('/post_question', function() {
-    return view('post_question');
-});
+Route::get('/home', [TipController::class, 'home']);
+Route::get('/post_question', [TipController::class, 'postQuestion']);
+Route::get('/my_posted_questions', [TipController::class, 'myPostedQuestions']);
+Route::get('/post_answer', [TipController::class, 'postAnswer']);
+Route::get('/all_answers', [TipController::class, 'allAnswers']);
+Route::get('/my_posted_answers', [TipController::class, 'myPostedAnswers']);

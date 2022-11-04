@@ -29,7 +29,7 @@
 								<a class="nav-link" aria-current="page" href="/post_question">質問投稿</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="/my_posted_questions">マイ投稿</a>
+								<a class="nav-link active" aria-current="page" href="/my_posted_questions">マイ投稿</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" aria-current="page" href="#">ログアウト</a>
@@ -50,7 +50,15 @@
 			</nav>
 		</header>
 		<main>
-			<div class="d-flex flex-row-reverse">
+			<div class="d-flex justify-content-between">
+				<ul class="nav nav-tabs">
+					<li class="nav-item">
+						<a class="nav-link" aria-current="page" href="/my_posted_questions">投稿した質問</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" href="/my_posted_answers">回答した質問</a>
+					</li>
+				</ul>
 				<select class="form-select w-auto mx-2" aria-label="Default select example">
 					<option selected>▼並べ替え</option>
 					<option value="1">新着順</option>

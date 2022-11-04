@@ -23,7 +23,7 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="/home">ホーム</a>
+								<a class="nav-link" aria-current="page" href="/home">ホーム</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" aria-current="page" href="/post_question">質問投稿</a>
@@ -58,21 +58,12 @@
 					<option value="3">回答数順</option>
 				</select>
 			</div>
-			<div class="questions container text-center border border-dark border-2 rounded-3">
-				<div class='question'>
-					<h2 class='title row align-items-start'>質問タイトル</h2>
-					<p class="row align-items-start">音楽カテゴリ</p>
-					<p class='body row align-items-start'>質問文</p>
+			<div class="answers container text-center border border-dark border-2 rounded-3">
+				<div class='answer'>
+					<h2 class='title row align-items-start'>回答タイトル</h2>
+					<p class='body row align-items-start'>回答文</p>
 					<div class="d-flex justify-content-between">
-						<div>
-							<button type="button" class="">★気になる！</button>
-							<div>
-								<a href="/all_answers">回答を見る</a>
-							</div>
-						</div>
-						<div class="border border-dark border-2 rounded-3 row align-items-center">
-  							<a class="col" href="/post_answer">回答する</a>
-  						</div>
+						<button type="button" class="">★いいね！</button>
 					</div>
 				</div>
 			</div>

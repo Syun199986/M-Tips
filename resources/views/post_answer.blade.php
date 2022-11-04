@@ -23,7 +23,7 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="/home">ホーム</a>
+								<a class="nav-link" aria-current="page" href="/home">ホーム</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" aria-current="page" href="/post_question">質問投稿</a>
@@ -50,32 +50,24 @@
 			</nav>
 		</header>
 		<main>
-			<div class="d-flex flex-row-reverse">
-				<select class="form-select w-auto mx-2" aria-label="Default select example">
-					<option selected>▼並べ替え</option>
-					<option value="1">新着順</option>
-					<option value="2">気になる!が多い順</option>
-					<option value="3">回答数順</option>
-				</select>
-			</div>
-			<div class="questions container text-center border border-dark border-2 rounded-3">
+			<div class="questions container text-center border border-dark border-2 rounded-3 my-3">
 				<div class='question'>
 					<h2 class='title row align-items-start'>質問タイトル</h2>
 					<p class="row align-items-start">音楽カテゴリ</p>
 					<p class='body row align-items-start'>質問文</p>
-					<div class="d-flex justify-content-between">
-						<div>
-							<button type="button" class="">★気になる！</button>
-							<div>
-								<a href="/all_answers">回答を見る</a>
-							</div>
-						</div>
-						<div class="border border-dark border-2 rounded-3 row align-items-center">
-  							<a class="col" href="/post_answer">回答する</a>
-  						</div>
-					</div>
 				</div>
 			</div>
+			<div class="questions container text-center border border-dark border-2 rounded-3">
+                <div class="mb-3">
+                    <h2 class="form-label row align-items-start">回答文</h2>
+                    <textarea class="form-control" id="" rows="3" placeholder="回答文を入力"></textarea>
+                </div>
+                <div class="d-flex justify-content-between">
+      				<button type="button" class="">♪音楽・動画ファイルを追加</button>
+      				<button type="button" class="">投稿する</button>
+				</div>
+			</div>
+
 		</main>
 	</body>
 
