@@ -61,6 +61,7 @@
 			<div class="answers container text-center border border-dark border-2 rounded-3">
 				<div class='answer'>
 					<h2 class='title row align-items-start'>回答タイトル</h2>
+					<p class="row align-items-start">2022/11/5(投稿日付)</p>
 					<p class='body row align-items-start'>回答文</p>
 					<div class="d-flex justify-content-between">
 						<button type="button" class="">★いいね！</button>
