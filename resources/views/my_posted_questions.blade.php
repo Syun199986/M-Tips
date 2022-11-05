@@ -29,7 +29,7 @@
 								<a class="nav-link" aria-current="page" href="/post_question">質問投稿</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="/my_posted_questions">マイ投稿</a>
+								<a class="nav-link active" aria-current="page" href="/my_posted_questions">マイ投稿</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" aria-current="page" href="#">ログアウト</a>
@@ -50,7 +50,15 @@
 			</nav>
 		</header>
 		<main>
-			<div class="d-flex flex-row-reverse">
+			<div class="d-flex justify-content-between">
+				<ul class="nav nav-tabs">
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="/my_posted_questions">投稿した質問</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/my_posted_answers">回答した質問</a>
+					</li>
+				</ul>
 				<select class="form-select w-auto mx-2" aria-label="Default select example">
 					<option selected>▼並べ替え</option>
 					<option value="1">新着順</option>
@@ -60,20 +68,17 @@
 			</div>
 			<div class="questions container text-center border border-dark border-2 rounded-3">
 				<div class='question'>
-					<h2 class='title row align-items-start'>質問タイトル</h2>
+					<h2 class='title row align-items-start'>投稿した質問タイトル</h2>
 					<p class="row align-items-start">2022/11/5(投稿日付)</p>
 					<p class="row align-items-start">音楽カテゴリ</p>
-					<p class='body row align-items-start'>質問文</p>
+					<p class='body row align-items-start'>投稿した質問文</p>
 					<div class="d-flex justify-content-between">
 						<div>
-							<button type="button" class="">★気になる！</button>
-							<div>
-								<a href="/all_answers">回答を見る</a>
+							<p class="row align-items-start">★気になる！：10(数字カウント)</p>
+							<div class="row align-items-start">
+								<a class="row align-items-start" href="/all_answers">回答を見る</a>
 							</div>
 						</div>
-						<div class="border border-dark border-2 rounded-3 row align-items-center">
-  							<a class="col" href="/post_answer">回答する</a>
-  						</div>
 					</div>
 				</div>
 			</div>
