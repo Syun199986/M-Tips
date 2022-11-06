@@ -23,7 +23,7 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="/home">ホーム</a>
+								<a class="nav-link" aria-current="page" href="/home">ホーム</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" aria-current="page" href="/post_question">質問投稿</a>
@@ -69,7 +69,7 @@
 			<div class="questions container text-center border border-dark border-2 rounded-3">
 				<div class='question'>
 					<h2 class='title row align-items-start'>質問タイトル</h2>
-					<p class="row align-items-start">2022/11/5(投稿日付)</p>
+						<p class="row align-items-start">2022/11/5(投稿日付)</p>
 					<p class="row align-items-start">音楽カテゴリ</p>
 					<p class='body row align-items-start'>質問文</p>
 					<div class="d-flex justify-content-between">

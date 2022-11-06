@@ -61,7 +61,7 @@
 			<div class="questions container text-center border border-dark border-2 rounded-3">
 				<div class='question'>
 					<h2 class='title row align-items-start'>質問タイトル</h2>
-					<p class="row align-items-start">2022/11/5(投稿日付)</p>
+						<p class="row align-items-start">2022/11/5(投稿日付)</p>
 					<p class="row align-items-start">音楽カテゴリ</p>
 					<p class='body row align-items-start'>質問文</p>
 					<div class="d-flex justify-content-between">
@@ -72,7 +72,7 @@
 							</div>
 						</div>
 						<div class="border border-dark border-2 rounded-3 row align-items-center">
-  							<a class="col" href="/post_answer">回答する</a>
+  							<a class="" href="/post_answer">回答する</a>
   						</div>
 					</div>
 				</div>

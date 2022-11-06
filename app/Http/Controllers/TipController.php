@@ -31,4 +31,12 @@ class TipController extends Controller
     {
         return view('my_posted_answers');
     }
+    public function editQuestion(Tip $tip)
+    {
+        return view('edit_question');
+    }
+    public function editAnswer(Tip $tip)
+    {
+        return view('edit_answer');
+    }
 }

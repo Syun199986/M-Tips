@@ -21,3 +21,5 @@ Route::get('/my_posted_questions', [TipController::class, 'myPostedQuestions']);
 Route::get('/post_answer', [TipController::class, 'postAnswer']);
 Route::get('/all_answers', [TipController::class, 'allAnswers']);
 Route::get('/my_posted_answers', [TipController::class, 'myPostedAnswers']);
+Route::get('/edit_question', [TipController::class, 'editQuestion']);
+Route::get('/edit_answer', [TipController::class, 'editAnswer']);

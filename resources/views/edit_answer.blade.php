@@ -50,27 +50,27 @@
 			</nav>
 		</header>
 		<main>
-			<div class="d-flex flex-row-reverse">
-				<select class="form-select w-auto mx-2" aria-label="Default select example">
-					<option selected>▼並べ替え</option>
-					<option value="1">新着順</option>
-					<option value="2">気になる!が多い順</option>
-					<option value="3">回答数順</option>
-				</select>
-			</div>
-			<div class="answers container text-center border border-dark border-2 rounded-3">
-				<div class='answer'>
-					<h2 class='title row align-items-start'>回答タイトル</h2>
-					<div class="d-flex justify-content-between">
-						<p class="row align-items-start">2022/11/5(投稿日付)</p>
-						<a href="/edit_answer">回答の編集・削除</a>
-					</div>
-					<p class='body row align-items-start'>回答文</p>
-					<div class="d-flex justify-content-between">
-						<button type="button" class="">★いいね！</button>
-					</div>
+			<div class="questions container text-center border border-dark border-2 rounded-3 my-3">
+				<div class='question'>
+					<h2 class='title row align-items-start'>質問タイトル</h2>
+					<p class="row align-items-start">音楽カテゴリ</p>
+					<p class='body row align-items-start'>質問文</p>
 				</div>
 			</div>
+			<div class="questions container text-center border border-dark border-2 rounded-3">
+                <div class="mb-3">
+                    <h2 class="form-label row align-items-start">回答文</h2>
+                    <textarea class="form-control" id="" rows="3" placeholder="(投稿した回答文)"></textarea>
+                </div>
+                <div class="d-flex justify-content-between">
+      				<button type="button" class="">♪音楽・動画ファイルを追加</button>
+      				<div>
+          				<button type="button" class="">回答を削除</button>
+          				<button type="button" class="">編集を完了</button>
+      				</div>
+				</div>
+			</div>
+
 		</main>
 	</body>
 
