@@ -72,7 +72,7 @@
 							</div>
 						</div>
 						<div class="border border-dark border-2 rounded-3 row align-items-center">
-  							<a class="col" href="/post_answer">回答する</a>
+  							<a class="" href="/post_answer">回答する</a>
   						</div>
 					</div>
 				</div>
