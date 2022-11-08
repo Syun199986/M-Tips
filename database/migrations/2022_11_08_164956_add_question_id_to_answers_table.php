@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->dropColumn('favorite');
+        Schema::table('answers', function (Blueprint $table) {
+            $table->foreignId('question_id')->constrained();
         });
     }
 
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->boolean('favorite')->default(false);
+        Schema::table('answers', function (Blueprint $table) {
+            //
         });
     }
 };
