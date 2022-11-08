@@ -13,8 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->dropColumn('favorite');
+        Schema::create('questions', function (Blueprint $table) {
+            $table->id();
+            $table->string('title', 50);
+            $table->text('body');
+            $table->string('file_path', 150);
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -25,8 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->boolean('favorite')->default(false);
-        });
+        Schema::dropIfExists('questions');
     }
 };
