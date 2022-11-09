@@ -51,32 +51,34 @@
 		</header>
 		<main>
 			<div class="d-flex flex-row-reverse">
-				<select class="form-select w-auto mx-2" aria-label="Default select example">
+				<select class="form-select w-auto mx-2 my-3" aria-label="Default select example">
 					<option selected>▼並べ替え</option>
 					<option value="1">新着順</option>
 					<option value="2">気になる!が多い順</option>
 					<option value="3">回答数順</option>
 				</select>
 			</div>
-			<div class="questions container text-center border border-dark border-2 rounded-3">
-				<div class='question'>
-					<h2 class='title row align-items-start'>質問タイトル</h2>
-					<p class="row align-items-start">2022/11/5(投稿日付)</p>
-					<p class="row align-items-start">音楽カテゴリ</p>
-					<p class='body row align-items-start'>質問文</p>
-					<div class="d-flex justify-content-between">
-						<div>
-							<button type="button" class="">★気になる！</button>
+			@foreach ($questions as $question)
+				<div class="questions container text-center border border-dark border-2 rounded-3 mb-3">
+					<div class='question'>
+						<h2 class='title row align-items-start'>{{ $question->title }}</h2>
+						<p class="row align-items-start">{{ $question->created_at }}</p>
+						<p class="row align-items-start">音楽カテゴリ：{{ $question->category_id }}</p>
+						<p class='body row align-items-start'>{{ $question->body }}</p>
+						<div class="d-flex justify-content-between">
 							<div>
-								<a href="/all_answers">回答を見る</a>
+								<button type="button" class="">★気になる！</button>
+								<div>
+									<a href="/all_answers">回答を見る</a>
+								</div>
 							</div>
+							<div class="border border-dark border-2 rounded-3 row align-items-center">
+		  						<a class="" href="/post_answer">回答する</a>
+		  					</div>
 						</div>
-						<div class="border border-dark border-2 rounded-3 row align-items-center">
-  							<a class="" href="/post_answer">回答する</a>
-  						</div>
 					</div>
 				</div>
-			</div>
+			@endforeach
 		</main>
 	</body>
 
