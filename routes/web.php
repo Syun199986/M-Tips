@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TipController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\AnswerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +15,11 @@ use App\Http\Controllers\TipController;
 |
 */
 
-// Route::get('/home',[QuestionController::class, 'index']);
-Route::get('/home', [TipController::class, 'home']);
-Route::get('/post_question', [TipController::class, 'postQuestion']);
-Route::get('/my_posted_questions', [TipController::class, 'myPostedQuestions']);
-Route::get('/post_answer', [TipController::class, 'postAnswer']);
-Route::get('/all_answers', [TipController::class, 'allAnswers']);
-Route::get('/my_posted_answers', [TipController::class, 'myPostedAnswers']);
-Route::get('/edit_question', [TipController::class, 'editQuestion']);
-Route::get('/edit_answer', [TipController::class, 'editAnswer']);
+Route::get('/home', [QuestionController::class, 'home']);
+Route::get('/post_question', [QuestionController::class, 'postQuestion']);
+Route::get('/my_posted_questions', [QuestionController::class, 'myPostedQuestions']);
+Route::get('/post_answer', [AnswerController::class, 'postAnswer']);
+Route::get('/all_answers', [AnswerController::class, 'allAnswers']);
+Route::get('/my_posted_answers', [AnswerController::class, 'myPostedAnswers']);
+Route::get('/edit_question', [QuestionController::class, 'editQuestion']);
+Route::get('/edit_answer', [AnswerController::class, 'editAnswer']);
