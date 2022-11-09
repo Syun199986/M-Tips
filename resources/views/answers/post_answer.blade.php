@@ -52,9 +52,9 @@
 		<main>
 			<div class="questions container text-center border border-dark border-2 rounded-3 my-3">
 				<div class='question'>
-					<h2 class='title row align-items-start'>質問タイトル</h2>
-					<p class="row align-items-start">音楽カテゴリ</p>
-					<p class='body row align-items-start'>質問文</p>
+					<h2 class='title row align-items-start'>{{ $question->title }}</h2>
+					<p class="row align-items-start">音楽カテゴリ：{{ $question->category_id }}</p>
+					<p class='body row align-items-start'>{{ $question->body }}</p>
 				</div>
 			</div>
 			<div class="questions container text-center border border-dark border-2 rounded-3">

@@ -17,8 +17,9 @@ use App\Http\Controllers\AnswerController;
 
 Route::get('/home', [QuestionController::class, 'home']);
 Route::get('/post_question', [QuestionController::class, 'postQuestion']);
+Route::get('/home/{question}', [AnswerController::class, 'postAnswer']);
+Route::post('/home', [QuestionController::class, 'storeQuestion']);
 Route::get('/my_posted_questions', [QuestionController::class, 'myPostedQuestions']);
-Route::get('/post_answer', [AnswerController::class, 'postAnswer']);
 Route::get('/all_answers', [AnswerController::class, 'allAnswers']);
 Route::get('/my_posted_answers', [AnswerController::class, 'myPostedAnswers']);
 Route::get('/edit_question', [QuestionController::class, 'editQuestion']);

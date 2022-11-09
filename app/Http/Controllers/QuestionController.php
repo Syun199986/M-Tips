@@ -12,18 +12,24 @@ class QuestionController extends Controller
 {
     public function home(Question $question)
     {
-        return view('home');
+        return view('questions/home')->with(['questions' => $question->get()]);
     }
     public function postQuestion(Question $question)
     {
-        return view('post_question');
+        return view('questions/post_question');
+    }
+    public function storeQuestion(Request $request, Question $question)
+    {
+        $input = $request['question'];
+        $question->fill($input)->save();
+        return redirect('/home');
     }
     public function myPostedQuestions(Question $question)
     {
-        return view('my_posted_questions');
+        return view('questions/my_posted_questions');
     }
     public function editQuestion(Question $question)
     {
-        return view('edit_question');
+        return view('questions/edit_question');
     }
 }
