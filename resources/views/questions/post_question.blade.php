@@ -56,7 +56,7 @@
 	                <div class="mb-3">
 	                    <h2 class="form-label">質問タイトル</h2>
 				        <div class="d-flex flex-row">
-	                        <input type="text" name="question[title]" class="form-control" placeholder="質問タイトルを入力"/>
+	                        <input type="text" name="question[title]" class="form-control" placeholder="質問タイトルを入力" value="{{ old('question.title') }}"/>
 	                        <select class="form-select w-auto mx-2" aria-label="Default select example">
 	            				<option selected>▼カテゴリ選択</option>
 	            				<option value="1">1</option>
@@ -64,6 +64,7 @@
 	            				<option value="3">3</option>
 	    				    </select>
 	                    </div>
+	                    <p class="title__error" style="color:red">{{ $errors->first('question.title') }}</p>
 	                </div>
 	                <div class="mb-3">
 	                    <h2 class="form-label">質問文</h2>

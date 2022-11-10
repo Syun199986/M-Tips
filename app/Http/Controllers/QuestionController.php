@@ -7,6 +7,7 @@ use App\Models\Answer;
 use App\Models\Category;
 use App\Models\Question;
 use App\Models\User;
+use App\Http\Requests\QuestionPostRequest;
 
 class QuestionController extends Controller
 {
@@ -18,7 +19,7 @@ class QuestionController extends Controller
     {
         return view('questions/post_question');
     }
-    public function storeQuestion(Request $request, Question $question)
+    public function storeQuestion(QuestionPostRequest $request, Question $question)
     {
         $input = $request['question'];
         $question->fill($input)->save();
