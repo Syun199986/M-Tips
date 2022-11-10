@@ -10,20 +10,20 @@ use App\Models\User;
 
 class AnswerController extends Controller
 {
-    public function postAnswer(Answer $answer)
+    public function postAnswer(Question $question, Answer $answer)
     {
-        return view('post_answer');
+        return view('answers/post_answer')->with(['question' => $question]);
     }
     public function allAnswers(Answer $answer)
     {
-        return view('all_answers');
+        return view('answers/all_answers');
     }
     public function myPostedAnswers(Answer $answer)
     {
-        return view('my_posted_answers');
+        return view('answers/my_posted_answers');
     }
     public function editAnswer(Answer $answer)
     {
-        return view('edit_answer');
+        return view('answers/edit_answer');
     }
 }

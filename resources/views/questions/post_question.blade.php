@@ -26,7 +26,7 @@
 								<a class="nav-link" aria-current="page" href="/home">ホーム</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="/post_question">質問投稿</a>
+								<a class="nav-link active" aria-current="page" href="/post_question">質問投稿</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" aria-current="page" href="/my_posted_questions">マイ投稿</a>
@@ -50,24 +50,34 @@
 			</nav>
 		</header>
 		<main>
-			<div class="questions container text-center border border-dark border-2 rounded-3 my-3">
-				<div class='question'>
-					<h2 class='title row align-items-start'>質問タイトル</h2>
-					<p class="row align-items-start">音楽カテゴリ</p>
-					<p class='body row align-items-start'>質問文</p>
+			<form action="/home" method="POST">
+				@csrf
+				<div class="post_question container border border-dark border-2 rounded-3 my-3">
+	                <div class="mb-3">
+	                    <h2 class="form-label">質問タイトル</h2>
+				        <div class="d-flex flex-row">
+	                        <input type="text" name="question[title]" class="form-control" placeholder="質問タイトルを入力" value="{{ old('question.title') }}"/>
+	                        <select class="form-select w-auto mx-2" aria-label="Default select example">
+	            				<option selected>▼カテゴリ選択</option>
+	            				<option value="1">1</option>
+	            				<option value="2">2</option>
+	            				<option value="3">3</option>
+	    				    </select>
+	                    </div>
+	                    <p class="title__error" style="color:red">{{ $errors->first('question.title') }}</p>
+	                </div>
+	                <div class="mb-3">
+	                    <h2 class="form-label">質問文</h2>
+	                    <textarea class="form-control" name="question[body]" rows="3" placeholder="質問文を入力"></textarea>
+	                </div>
+	                <div class="d-flex justify-content-between">
+	      				<!--<a href="#" class="">♪音楽・動画ファイルを追加</a>-->
+	      				<input type="text" name="question[file_path]" class="" placeholder="テスト用ファイルパスを入力"/>
+	      				<input type="text" name="question[category_id]" class="" placeholder="テスト用カテゴリーIDを入力"/>
+	      				<input type="submit" value="投稿する" class=""/>
+					</div>
 				</div>
-			</div>
-			<div class="questions container text-center border border-dark border-2 rounded-3">
-                <div class="mb-3">
-                    <h2 class="form-label row align-items-start">回答文</h2>
-                    <textarea class="form-control" id="" rows="3" placeholder="回答文を入力"></textarea>
-                </div>
-                <div class="d-flex justify-content-between">
-      				<button type="button" class="">♪音楽・動画ファイルを追加</button>
-      				<button type="button" class="">投稿する</button>
-				</div>
-			</div>
-
+			</form>
 		</main>
 	</body>
 
