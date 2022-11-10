@@ -68,14 +68,17 @@
 	                </div>
 	                <div class="mb-3">
 	                    <h2 class="form-label">質問文</h2>
-	                    <textarea class="form-control" name="question[body]" rows="3" placeholder="質問文を入力"></textarea>
+	                    <textarea class="form-control" name="question[body]" rows="3" placeholder="質問文を入力" value="{{ old('question.body') }}"></textarea>
+	                    <p class="title__error" style="color:red">{{ $errors->first('question.body') }}</p>
 	                </div>
 	                <div class="d-flex justify-content-between">
 	      				<!--<a href="#" class="">♪音楽・動画ファイルを追加</a>-->
-	      				<input type="text" name="question[file_path]" class="" placeholder="テスト用ファイルパスを入力"/>
-	      				<input type="text" name="question[category_id]" class="" placeholder="テスト用カテゴリーIDを入力"/>
+	      				<input type="text" name="question[file_path]" class="" placeholder="テスト用ファイルパスを入力" value="{{ old('question.file_path') }}"/>
+	      				<input type="text" name="question[category_id]" class="" placeholder="テスト用カテゴリーIDを入力" value="{{ old('question.category_id') }}"/>
 	      				<input type="submit" value="投稿する" class=""/>
 					</div>
+					<p class="title__error" style="color:red">{{ $errors->first('question.file_path') }}</p>
+	                    <p class="title__error" style="color:red">{{ $errors->first('question.category_id') }}</p>
 				</div>
 			</form>
 		</main>
