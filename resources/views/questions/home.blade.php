@@ -64,9 +64,16 @@
 						<h2 class='title row align-items-start'>{{ $question->title }}</h2>
 						<div class="d-flex justify-content-between">
 							<p class="row align-items-start">{{ $question->created_at }}</p>
-							<a href="/questions/{{ $question->id }}/edit_question">質問の編集・削除</a>
+							<a href="/questions/{{ $question->id }}/edit_question">質問の編集</a>
 						</div>
-						<p class="row align-items-start">音楽カテゴリ：{{ $question->category_id }}</p>
+						<div class="d-flex justify-content-between">
+							<p class="row align-items-start">音楽カテゴリ：{{ $question->category_id }}</p>
+							<form action="/home/{{ $question->id }}" id="form_{{ $question->id }}" method="post">
+								@csrf
+								@method('DELETE')
+								<a href="#" onclick="deleteQuestion({{ $question->id }})" style="color:red">質問の削除</a>
+							</form>
+						</div>
 						<p class='body row align-items-start'>{{ $question->body }}</p>
 						<div class="d-flex justify-content-between">
 							<div>
@@ -84,5 +91,13 @@
 			@endforeach
 		</main>
 	</body>
-
+	<script>
+		function deleteQuestion(id) {
+			'use strict'
+			
+			if (confirm('質問を削除しますか？')) {
+				document.getElementById(`form_${id}`).submit();
+			}
+		}
+	</script>
 </html>

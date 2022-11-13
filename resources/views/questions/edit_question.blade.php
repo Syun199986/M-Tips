@@ -74,14 +74,10 @@
 	      				<!--<button type="button" class="">♪音楽・動画ファイルを追加</button>-->
 	      				<input type="text" name="question[file_path]" class="" value="{{ $question->file_path }}"/>
 	      				<input type="text" name="question[category_id]" class="" value="{{ $question->category_id }}"/>
-	      				<div>
-	          				<button type="button" class="">質問を削除</button>
-	          				<button type="submit" class="">編集を完了</button>
-	      				</div>
+	          			<button type="submit" class="">編集を完了</button>
 					</div>
                 </form>
 			</div>
 		</main>
 	</body>
-
 </html>

@@ -35,6 +35,11 @@ class QuestionController extends Controller
         $question->fill($input_question)->save();
         return redirect('/home');
     }
+    public function deleteQuestion(Question $question)
+    {
+        $question->delete();
+        return redirect('/home');
+    }
     public function myPostedQuestions(Question $question)
     {
         return view('questions/my_posted_questions');
