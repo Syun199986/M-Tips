@@ -25,12 +25,18 @@ class QuestionController extends Controller
         $question->fill($input)->save();
         return redirect('/home');
     }
+    public function editQuestion(Question $question)
+    {
+        return view('questions/edit_question')->with(['question' => $question]);
+    }
+    public function questionUpdate(QuestionPostRequest $request, Question $question)
+    {
+        $input_question = $request['question'];
+        $question->fill($input_question)->save();
+        return redirect('/home');
+    }
     public function myPostedQuestions(Question $question)
     {
         return view('questions/my_posted_questions');
-    }
-    public function editQuestion(Question $question)
-    {
-        return view('questions/edit_question');
     }
 }

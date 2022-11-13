@@ -50,30 +50,36 @@
 			</nav>
 		</header>
 		<main>
-			<div class="questions container border border-dark border-2 rounded-3 my-3">
-                <div class="mb-3">
-                    <h2 class="form-label">質問タイトル</h2>
-			        <div class="d-flex flex-row">
-                        <input type="text" class="form-control" id="" placeholder="(投稿した質問タイトル)">
-                        <select class="form-select w-auto mx-2" aria-label="Default select example">
-            				<option selected>(設定したカテゴリ)</option>
-            				<option value="1">1</option>
-            				<option value="2">2</option>
-            				<option value="3">3</option>
-    				    </select>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <h2 class="form-label">質問文</h2>
-                    <textarea class="form-control" id="" rows="3" placeholder="(投稿した質問文)"></textarea>
-                </div>
-                <div class="d-flex justify-content-between">
-      				<button type="button" class="">♪音楽・動画ファイルを追加</button>
-      				<div>
-          				<button type="button" class="">質問を削除</button>
-          				<button type="button" class="">編集を完了</button>
-      				</div>
-				</div>
+			<div class="edit_question container border border-dark border-2 rounded-3 my-3">
+                <form action="/questions/{{ $question->id }}" method="POST">
+                	@csrf
+                	@method('PUT')
+                	<div class="mb-3">
+	                    <h2 class="form-label">質問タイトル</h2>
+				        <div class="d-flex flex-row">
+	                        <input type="text" class="form-control" name="question[title]" value="{{ $question->title }}">
+	                        <select class="form-select w-auto mx-2" aria-label="Default select example">
+	            				<option selected>(設定したカテゴリ)</option>
+	            				<option value="1">1</option>
+	            				<option value="2">2</option>
+	            				<option value="3">3</option>
+	    				    </select>
+	                    </div>
+                	</div>
+	                <div class="mb-3">
+	                    <h2 class="form-label">質問文</h2>
+	                    <textarea class="form-control" name="question[body]" rows="3">{{ $question->body }}</textarea>
+	                </div>
+	                <div class="d-flex justify-content-between">
+	      				<!--<button type="button" class="">♪音楽・動画ファイルを追加</button>-->
+	      				<input type="text" name="question[file_path]" class="" value="{{ $question->file_path }}"/>
+	      				<input type="text" name="question[category_id]" class="" value="{{ $question->category_id }}"/>
+	      				<div>
+	          				<button type="button" class="">質問を削除</button>
+	          				<button type="submit" class="">編集を完了</button>
+	      				</div>
+					</div>
+                </form>
 			</div>
 		</main>
 	</body>
