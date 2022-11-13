@@ -21,7 +21,7 @@ Route::get('/home/{question}', [AnswerController::class, 'postAnswer']);
 Route::post('/home', [QuestionController::class, 'storeQuestion']);
 Route::get('/questions/{question}/edit_question', [QuestionController::class, 'editQuestion']);
 Route::put('/questions/{question}', [QuestionController::class, 'questionUpdate']);
+Route::delete('/home/{question}', [QuestionController::class, 'deleteQuestion']);
 Route::get('/my_posted_questions', [QuestionController::class, 'myPostedQuestions']);
 Route::get('/all_answers', [AnswerController::class, 'allAnswers']);
 Route::get('/my_posted_answers', [AnswerController::class, 'myPostedAnswers']);
-Route::get('/edit_answer', [AnswerController::class, 'editAnswer']);
