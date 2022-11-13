@@ -13,8 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->string('file_path')->nullable()->change();
+        Schema::create('questions', function (Blueprint $table) {
+            $table->id();
+            $table->string('title', 50);
+            $table->text('body');
+            $table->string('file_path', 150)->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+            $table->foreignId('category_id')->constrained();
         });
     }
 
@@ -25,7 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('questions', function (Blueprint $table) {
-        });
+        Schema::dropIfExists('questions');
     }
 };
