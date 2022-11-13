@@ -14,7 +14,6 @@ class Question extends Model
     protected $fillable = [
         'title',
         'body',
-        'file_path',
         'category_id'
     ];
     

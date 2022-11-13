@@ -19,10 +19,25 @@ class QuestionController extends Controller
     {
         return view('questions/post_question');
     }
-    public function storeQuestion(QuestionPostRequest $request, Question $question)
+    public function storeQuestion(Request $req, QuestionPostRequest $request, Question $question)
     {
         $input = $request['question'];
         $question->fill($input)->save();
+        // $req->file('question_file')->store('public/question_file');
+        
+        //ファイルの保存
+        if($req->question_file){
+        
+            if($req->question_file->extension() == 'gif' 
+            || $req->question_file->extension() == 'jpeg' 
+            || $req->question_file->extension() == 'jpg' 
+            || $req->question_file->extension() == 'png'
+            || $req->question_file->extension() == 'mp3')
+            {
+                $req->file('question_file')->storeAs('public/question_file', $question->id.'.'.$req->question_file->extension());
+            }
+        }        
+        
         return redirect('/home');
     }
     public function editQuestion(Question $question)

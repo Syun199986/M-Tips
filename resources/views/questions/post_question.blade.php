@@ -50,7 +50,7 @@
 			</nav>
 		</header>
 		<main>
-			<form action="/home" method="POST">
+			<form action="/home" method="POST" enctype="multipart/form-data">
 				@csrf
 				<div class="post_question container border border-dark border-2 rounded-3 my-3">
 	                <div class="mb-3">
@@ -73,12 +73,11 @@
 	                </div>
 	                <div class="d-flex justify-content-between">
 	      				<!--<a href="#" class="">♪音楽・動画ファイルを追加</a>-->
-	      				<input type="text" name="question[file_path]" class="" placeholder="テスト用ファイルパスを入力" value="{{ old('question.file_path') }}"/>
+	      				<input type="file" name="question_file" class=""/>
 	      				<input type="text" name="question[category_id]" class="" placeholder="テスト用カテゴリーIDを入力" value="{{ old('question.category_id') }}"/>
 	      				<input type="submit" value="投稿する" class=""/>
 					</div>
-					<p class="title__error" style="color:red">{{ $errors->first('question.file_path') }}</p>
-	                    <p class="title__error" style="color:red">{{ $errors->first('question.category_id') }}</p>
+	                <p class="title__error" style="color:red">{{ $errors->first('question.category_id') }}</p>
 				</div>
 			</form>
 		</main>
