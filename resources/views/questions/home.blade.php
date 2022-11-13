@@ -62,7 +62,10 @@
 				<div class="questions container text-center border border-dark border-2 rounded-3 mb-3">
 					<div class='question'>
 						<h2 class='title row align-items-start'>{{ $question->title }}</h2>
-						<p class="row align-items-start">{{ $question->created_at }}</p>
+						<div class="d-flex justify-content-between">
+							<p class="row align-items-start">{{ $question->created_at }}</p>
+							<a href="/questions/{{ $question->id }}/edit_question">質問の編集・削除</a>
+						</div>
 						<p class="row align-items-start">音楽カテゴリ：{{ $question->category_id }}</p>
 						<p class='body row align-items-start'>{{ $question->body }}</p>
 						<div class="d-flex justify-content-between">
