@@ -26,7 +26,6 @@ class QuestionPostRequest extends FormRequest
         return [
             'question.title' => 'required|string|max:50',
             'question.body' => 'required|string|max:4000',
-            'question.file_path' => 'required|string|max:255',
             'question.category_id' => 'required|integer|max:20'
         ];
     }

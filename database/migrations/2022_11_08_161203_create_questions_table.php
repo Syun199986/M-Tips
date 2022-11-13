@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('title', 50);
             $table->text('body');
-            $table->string('file_path', 150)->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreignId('category_id')->constrained();
