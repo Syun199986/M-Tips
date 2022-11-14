@@ -23,8 +23,25 @@ class QuestionController extends Controller
     {
         $input = $request['question'];
         $question->fill($input)->save();
-        // $req->file('question_file')->store('public/question_file');
+
+        //ファイルの保存
+        if($req->question_file){
         
+            if($req->question_file->extension() == 'gif' 
+            || $req->question_file->extension() == 'jpeg' 
+            || $req->question_file->extension() == 'jpg' 
+            || $req->question_file->extension() == 'png'
+            || $req->question_file->extension() == 'mp3')
+            {
+                $req->file('question_file')->storeAs('public/question_file', $question->id.'.'.$req->question_file->extension());
+                $question->where('id', $question->id)->update(['file_path' => "/storage/question_file/".$question->id]);
+            }
+        }        
+        
+        return redirect('/home');
+    }
+    public function editQuestion(Request $req, Question $question)
+    {
         //ファイルの保存
         if($req->question_file){
         
@@ -37,12 +54,13 @@ class QuestionController extends Controller
                 $req->file('question_file')->storeAs('public/question_file', $question->id.'.'.$req->question_file->extension());
             }
         }        
-        
-        return redirect('/home');
-    }
-    public function editQuestion(Question $question)
-    {
+
         return view('questions/edit_question')->with(['question' => $question]);
+    }
+    public function deleteFile(Request $req, QuestionPostRequest $request)
+    {
+        Storage::delete(public_path().'/storage/question_file/'. $question->id .'.mp3');
+        return redirect('/home');
     }
     public function questionUpdate(QuestionPostRequest $request, Question $question)
     {

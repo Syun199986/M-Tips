@@ -76,17 +76,11 @@
 						</div>
 						<p class='body row align-items-start'>{{ $question->body }}</p>
 						
-						@if(file_exists(public_path().'/storage/question_file/'. $question->id .'.jpg'))
-						    <img src="/storage/question_file/{{ $question->id }}.jpg">
-						@elseif(file_exists(public_path().'/storage/question_file/'. $question->id .'.jpeg'))
-						    <img src="/storage/question_file/{{ $question->id }}.jpeg">
-						@elseif(file_exists(public_path().'/storage/question_file/'. $question->id .'.png'))
-						    <img src="/storage/question_file/{{ $question->id }}.png">
-						@elseif(file_exists(public_path().'/storage/question_file/'. $question->id .'.gif'))
-						    <img src="/storage/question_file/{{ $question->id }}.gif">
-						@elseif(file_exists(public_path().'/storage/question_file/'. $question->id .'.mp3'))
-							<audio controls src="/storage/question_file/{{ $question->id }}.mp3">
-					            <a href="/storage/question_file/{{ $question->id }}.mp3">
+						@if(file_exists(public_path(). $question->file_path . '.png'))
+						    <img src="{{ $question->file_path }}.png">
+						@elseif(file_exists(public_path(). $question->file_path . '.mp3'))
+							<audio controls src="{{ $question->file_path }}.mp3">
+					            <a href="{{ $question->file_path }}.mp3">
 					            	Download audio
             					</a>
             				</audio>

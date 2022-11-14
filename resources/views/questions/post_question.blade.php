@@ -50,21 +50,23 @@
 			</nav>
 		</header>
 		<main>
-			<form action="/home" method="POST" enctype="multipart/form-data">
+			<div class="post_question container border border-dark border-2 rounded-3 my-3" id="question_form">
+				<form action="/home" method="POST" enctype="multipart/form-data">
 				@csrf
-				<div class="post_question container border border-dark border-2 rounded-3 my-3">
 	                <div class="mb-3">
 	                    <h2 class="form-label">質問タイトル</h2>
 				        <div class="d-flex flex-row">
 	                        <input type="text" name="question[title]" class="form-control" placeholder="質問タイトルを入力" value="{{ old('question.title') }}"/>
-	                        <select class="form-select w-auto mx-2" aria-label="Default select example">
-	            				<option selected>▼カテゴリ選択</option>
-	            				<option value="1">1</option>
-	            				<option value="2">2</option>
-	            				<option value="3">3</option>
-	    				    </select>
+	            <!--            <select class="form-select w-auto mx-2" aria-label="Default select example">-->
+	            <!--				<option selected>▼カテゴリ選択</option>-->
+	            <!--				<option value="1">1</option>-->
+	            <!--				<option value="2">2</option>-->
+	            <!--				<option value="3">3</option>-->
+	    				    <!--</select>-->
+		      				<input type="text" name="question[category_id]" class="" placeholder="テスト用カテゴリーIDを入力" value="{{ old('question.category_id') }}"/>
 	                    </div>
 	                    <p class="title__error" style="color:red">{{ $errors->first('question.title') }}</p>
+		                <p class="title__error" style="color:red">{{ $errors->first('question.category_id') }}</p>
 	                </div>
 	                <div class="mb-3">
 	                    <h2 class="form-label">質問文</h2>
@@ -72,15 +74,35 @@
 	                    <p class="title__error" style="color:red">{{ $errors->first('question.body') }}</p>
 	                </div>
 	                <div class="d-flex justify-content-between">
-	      				<!--<a href="#" class="">♪音楽・動画ファイルを追加</a>-->
-	      				<input type="file" name="question_file" class=""/>
-	      				<input type="text" name="question[category_id]" class="" placeholder="テスト用カテゴリーIDを入力" value="{{ old('question.category_id') }}"/>
+	      				<input type="file" name="question_file" class="" id="question_file"/>
 	      				<input type="submit" value="投稿する" class=""/>
 					</div>
-	                <p class="title__error" style="color:red">{{ $errors->first('question.category_id') }}</p>
-				</div>
-			</form>
+				</form>
+				<input type="submit" id="file_clear" value="ファイル選択解除" onclick="fileClear();"/>
+				<!--<form method="POST" action="/question_file/delete">-->
+				<!--	@csrf-->
+				<!--	<input type="hidden" name="path" value="{{ isset($path) ? $path : '' }}">-->
+	   <!--   			<input type="submit" value="ファイルの削除" style="color:red"/>-->
+	   <!--   		</form>-->
+			</div>
 		</main>
 	</body>
-
+	<!--<script>-->
+	<!--function changeFile(){-->
+	<!--	let del_btn = document.createElement('button');-->
+	<!--	del_btn.type = "button";-->
+	<!--	del_btn.innerText = "ファイルの削除";-->
+	<!--	let parent = document.getElementById('question_form');-->
+	<!--	parent.appendChild(del_btn);-->
+	<!--}-->
+	
+	<!--let fileBox = document.getElementById('question_file');-->
+	<!--fileBox.addEventListener('change', changeFile);-->
+	<!--</script>-->
+	<script>
+	function fileClear(){
+	  let qfile = document.getElementById("question_file");
+	  qfile.value = "";
+	}
+	</script>
 </html>
