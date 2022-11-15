@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Question;
 use App\Models\User;
 use App\Http\Requests\QuestionPostRequest;
+use Illuminate\Support\Facades\Storage;
 
 class QuestionController extends Controller
 {
@@ -34,7 +35,7 @@ class QuestionController extends Controller
             || $req->question_file->extension() == 'mp3')
             {
                 $req->file('question_file')->storeAs('public/question_file', $question->id.'.'.$req->question_file->extension());
-                $question->where('id', $question->id)->update(['file_path' => "/storage/question_file/".$question->id]);
+                $question->where('id', $question->id)->update(['file_path' => "/storage/question_file/".$question->id.'.'.$req->question_file->extension()]);
             }
         }        
         
@@ -42,6 +43,18 @@ class QuestionController extends Controller
     }
     public function editQuestion(Request $req, Question $question)
     {
+        return view('questions/edit_question')->with(['question' => $question]);
+    }
+    public function deleteFile(Request $req, QuestionPostRequest $request, Question $question)
+    {
+        $question->where('id', $question->id)->update(['file_path' => NULL]);
+        return redirect('/questions/'.$question->id.'/edit_question');
+    }
+    public function questionUpdate(Request $req, QuestionPostRequest $request, Question $question)
+    {
+        $input_question = $request['question'];
+        $question->fill($input_question)->save();
+        
         //ファイルの保存
         if($req->question_file){
         
@@ -52,20 +65,10 @@ class QuestionController extends Controller
             || $req->question_file->extension() == 'mp3')
             {
                 $req->file('question_file')->storeAs('public/question_file', $question->id.'.'.$req->question_file->extension());
+                $question->where('id', $question->id)->update(['file_path' => "/storage/question_file/".$question->id.'.'.$req->question_file->extension()]);
             }
         }        
-
-        return view('questions/edit_question')->with(['question' => $question]);
-    }
-    public function deleteFile(Request $req, QuestionPostRequest $request)
-    {
-        Storage::delete(public_path().'/storage/question_file/'. $question->id .'.mp3');
-        return redirect('/home');
-    }
-    public function questionUpdate(QuestionPostRequest $request, Question $question)
-    {
-        $input_question = $request['question'];
-        $question->fill($input_question)->save();
+        
         return redirect('/home');
     }
     public function deleteQuestion(Question $question)

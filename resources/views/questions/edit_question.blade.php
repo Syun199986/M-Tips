@@ -51,57 +51,59 @@
 		</header>
 		<main>
 			<div class="edit_question container border border-dark border-2 rounded-3 my-3">
-                <form action="/questions/{{ $question->id }}" method="POST" enctype="multipart/form-data">
+                <form action="/questions/{{ $question->id }}" method="POST" enctype="multipart/form-data" id="text_form">
                 	@csrf
                 	@method('PUT')
                 	<div class="mb-3">
 	                    <h2 class="form-label">質問タイトル</h2>
 				        <div class="d-flex flex-row">
-	                        <input type="text" class="form-control" name="question[title]" value="{{ $question->title }}">
+	                        <input form="text_form" type="text" class="form-control" name="question[title]" value="{{ $question->title }}">
 	            <!--            <select class="form-select w-auto mx-2" aria-label="Default select example">-->
 	            <!--				<option selected>(設定したカテゴリ)</option>-->
 	            <!--				<option value="1">1</option>-->
 	            <!--				<option value="2">2</option>-->
 	            <!--				<option value="3">3</option>-->
 	    				    <!--</select>-->
-		      			<input type="text" name="question[category_id]" class="" value="{{ $question->category_id }}"/>
+		      			<input form="text_form" type="text" name="question[category_id]" class="" value="{{ $question->category_id }}"/>
 	                    </div>
                 	</div>
 	                <div class="mb-3">
 	                    <h2 class="form-label">質問文</h2>
-	                    <textarea class="form-control" name="question[body]" rows="3">{{ $question->body }}</textarea>
+	                    <textarea form="text_form" class="form-control" name="question[body]" rows="3">{{ $question->body }}</textarea>
 	                </div>
-	                <div class="d-flex justify-content-between">
-		      			<!--<button type="button" class="">♪音楽・動画ファイルを追加</button>-->
-						@if(file_exists(public_path().'/storage/question_file/'. $question->id .'.jpg'))
-						    <img src="/storage/question_file/{{ $question->id }}.jpg">
-						@elseif(file_exists(public_path().'/storage/question_file/'. $question->id .'.jpeg'))
-						    <img src="/storage/question_file/{{ $question->id }}.jpeg">
-						@elseif(file_exists(public_path().'/storage/question_file/'. $question->id .'.png'))
-						    <img src="/storage/question_file/{{ $question->id }}.png">
-						@elseif(file_exists(public_path().'/storage/question_file/'. $question->id .'.gif'))
-						    <img src="/storage/question_file/{{ $question->id }}.gif">
-						@elseif(file_exists('/storage/question_file/'. $question->id .'.mp3'))
-							<audio controls src="/storage/question_file/{{ $question->id }}.mp3">
-						        <a href="/storage/question_file/{{ $question->id }}.mp3">
-						            Download audio
-	            				</a>
-	            			</audio>
-						@else
+						@if($question->file_path == NULL)
 			                <div class="d-flex justify-content-between">
-			      				<input type="file" name="question_file" class=""/>
+						      	<input form="text_form" type="file" name="question_file" id="question_file" class=""/>
+							    <button form="text_form" type="submit" class="">編集を完了</button>
 							</div>
+							<input type="button" id="file_clear" value="ファイル選択解除" onclick="fileClear();"/>
+						@else
+		                	<div class="d-flex justify-content-between">
+								<button type="submit" formaction="/questions/{{ $question->id }}/delete_file" id="delete_file">
+									ファイルを削除
+								</button>								
+								<button form="text_form" type="submit" class="">編集を完了</button>
+							</div>
+							@if(strrpos($question->file_path, '.png'))
+							    <img src="{{ $question->file_path }}">
+							@elseif(strrpos($question->file_path, '.mp3'))
+								<audio controls src="{{ $question->file_path }}">
+						            <a href="{{ $question->file_path }}">
+						            	Download audio
+	            					</a>
+	            				</audio>
+							@endif
 						@endif
 					</div>
-	                <div class="d-flex justify-content-between">
-				        <button type="submit" class="">編集を完了</button>
-				    </div>
                 </form>
-				<form method="POST" action="/home">
-					@csrf
-	      			<input type="submit" value="ファイルの削除" style="color:red"/>
-	      		</form>
 			</div>
 		</main>
 	</body>
+	<script>
+		function fileClear(){
+		  let qfile = document.getElementById("question_file");
+		  qfile.value = "";
+		}
+	</script>
+
 </html>

@@ -78,31 +78,14 @@
 	      				<input type="submit" value="投稿する" class=""/>
 					</div>
 				</form>
-				<input type="submit" id="file_clear" value="ファイル選択解除" onclick="fileClear();"/>
-				<!--<form method="POST" action="/question_file/delete">-->
-				<!--	@csrf-->
-				<!--	<input type="hidden" name="path" value="{{ isset($path) ? $path : '' }}">-->
-	   <!--   			<input type="submit" value="ファイルの削除" style="color:red"/>-->
-	   <!--   		</form>-->
+				<input type="button" id="file_clear" value="ファイル選択解除" onclick="fileClear();"/>
 			</div>
 		</main>
 	</body>
-	<!--<script>-->
-	<!--function changeFile(){-->
-	<!--	let del_btn = document.createElement('button');-->
-	<!--	del_btn.type = "button";-->
-	<!--	del_btn.innerText = "ファイルの削除";-->
-	<!--	let parent = document.getElementById('question_form');-->
-	<!--	parent.appendChild(del_btn);-->
-	<!--}-->
-	
-	<!--let fileBox = document.getElementById('question_file');-->
-	<!--fileBox.addEventListener('change', changeFile);-->
-	<!--</script>-->
 	<script>
-	function fileClear(){
-	  let qfile = document.getElementById("question_file");
-	  qfile.value = "";
-	}
+		function fileClear(){
+		  let qfile = document.getElementById("question_file");
+		  qfile.value = "";
+		}
 	</script>
 </html>

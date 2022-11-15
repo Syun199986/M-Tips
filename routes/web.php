@@ -20,7 +20,7 @@ Route::get('/post_question', [QuestionController::class, 'postQuestion']);
 Route::get('/home/{question}', [AnswerController::class, 'postAnswer']);
 Route::post('/home', [QuestionController::class, 'storeQuestion']);
 Route::get('/questions/{question}/edit_question', [QuestionController::class, 'editQuestion']);
-Route::post('/questions/{question}', [QuestionController::class, 'deleteFile']);
+Route::put('/questions/{question}/delete_file', [QuestionController::class, 'deleteFile']);
 Route::put('/questions/{question}', [QuestionController::class, 'questionUpdate']);
 Route::delete('/home/{question}', [QuestionController::class, 'deleteQuestion']);
 Route::get('/my_posted_questions', [QuestionController::class, 'myPostedQuestions']);

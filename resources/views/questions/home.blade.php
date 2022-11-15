@@ -75,17 +75,15 @@
 							</form>
 						</div>
 						<p class='body row align-items-start'>{{ $question->body }}</p>
-						
-						@if(file_exists(public_path(). $question->file_path . '.png'))
-						    <img src="{{ $question->file_path }}.png">
-						@elseif(file_exists(public_path(). $question->file_path . '.mp3'))
-							<audio controls src="{{ $question->file_path }}.mp3">
-					            <a href="{{ $question->file_path }}.mp3">
+						@if(strrpos($question->file_path, '.png'))
+						    <img src="{{ $question->file_path }}">
+						@elseif(strrpos($question->file_path, '.mp3'))
+							<audio controls src="{{ $question->file_path }}">
+					            <a href="{{ $question->file_path }}">
 					            	Download audio
             					</a>
             				</audio>
 						@endif						
-
 						<div class="d-flex justify-content-between">
 							<div>
 								<button type="button" class="">★気になる！</button>
