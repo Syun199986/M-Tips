@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
             $table->text('body');
-            $table->string('file_path', 150);
+            $table->string('file_path', 150)->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreignId('question_id')->constrained();
