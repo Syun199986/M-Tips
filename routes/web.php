@@ -29,10 +29,10 @@ Route::get('/questions/{question}/edit_question', [QuestionController::class, 'e
 Route::put('/questions/{question}/delete_file', [QuestionController::class, 'deleteFile']);
 Route::put('/questions/{question}', [QuestionController::class, 'questionUpdate']);
 
-Route::get('/questions/{question}/answers/{answer}/edit_answer', [AnswerController::class, 'editAnswer']);
+Route::get('/answers/{answer}/edit_answer', [AnswerController::class, 'editAnswer']);
 
 Route::delete('/home/{question}', [QuestionController::class, 'deleteQuestion']);
-Route::delete('/{question}/all_answers/{answer}', [AnswerController::class, 'deleteAnswer']);
+Route::delete('/answers/{answer}', [AnswerController::class, 'deleteAnswer']);
 
 Route::get('/my_posted_questions', [QuestionController::class, 'myPostedQuestions']);
 Route::get('/my_posted_answers', [AnswerController::class, 'myPostedAnswers']);

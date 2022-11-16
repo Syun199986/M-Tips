@@ -65,13 +65,14 @@
 							<p class="row align-items-start">{{ $answer->created_at }}</p>
 						</div>
 						<div class="d-flex justify-content-between">
-							<a href="/questions/{{ $question->id }}/answers/{{ $answer->id }}/edit_answer">回答の編集</a>
+							<a href="/answers/{{ $answer->id }}/edit_answer">回答の編集</a>
 						</div>
 						<div class="d-flex justify-content-between">
-							<form action="/{{ $question->id }}/all_answers/{{ $answer->id }}" id="form_{{ $answer->id }}" method="post">
+							<form action="/answers/{{ $answer->id }}" id="form_{{ $answer->id }}" method="post">
 								@csrf
 								@method('DELETE')
 								<a href="#" onclick="deleteAnswer({{ $answer->id }})" style="color:red">回答の削除</a>
+								<!--<button type="button" onclick="deleteAnswer({{ $answer->id }})" style="color:red">回答の削除</button>-->
 							</form>
 						</div>
 						<p class='body row align-items-start'>{{ $answer->body }}</p>

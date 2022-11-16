@@ -48,7 +48,7 @@ class AnswerController extends Controller
     public function deleteAnswer(Answer $answer)
     {
         $answer->delete();
-        return redirect('/'.$question->id.'/all_answers');
+        return redirect('/'.$answer->question_id.'/all_answers');
     }
     public function myPostedAnswers(Answer $answer)
     {
