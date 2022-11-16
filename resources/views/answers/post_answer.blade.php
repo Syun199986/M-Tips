@@ -57,18 +57,28 @@
 					<p class='body row align-items-start'>{{ $question->body }}</p>
 				</div>
 			</div>
-			<div class="questions container text-center border border-dark border-2 rounded-3">
-                <div class="mb-3">
-                    <h2 class="form-label row align-items-start">回答文</h2>
-                    <textarea class="form-control" id="" rows="3" placeholder="回答文を入力"></textarea>
-                </div>
-                <div class="d-flex justify-content-between">
-      				<button type="button" class="">♪音楽・動画ファイルを追加</button>
-      				<button type="button" class="">投稿する</button>
-				</div>
+			<div class="post_answer container border border-dark border-2 rounded-3 my-3" id="answer_form">
+				<form action="/{{ $question->id }}/all_answers/store" method="POST" enctype="multipart/form-data">
+				@csrf
+	                <div class="mb-3">
+	                    <h2 class="form-label">回答文</h2>
+	                    <textarea class="form-control" name="answer[body]" rows="3" placeholder="回答文を入力" value="{{ old('answer.body') }}"></textarea>
+	                    <p class="title__error" style="color:red">{{ $errors->first('answer.body') }}</p>
+	                </div>
+	                <div class="d-flex justify-content-between">
+	      				<input type="file" name="answer_file" class="" id="answer_file"/>
+	      				<input type="submit" value="投稿する" class=""/>
+					</div>
+		      		<input type="hidden" name="answer[question_id]" value="{{ $question->id }}"/>
+				</form>
+				<input type="button" id="file_clear" value="ファイル選択解除" onclick="fileClear();"/>
 			</div>
-
 		</main>
 	</body>
-
+	<script>
+		function fileClear(){
+		  let qfile = document.getElementById("answer_file");
+		  qfile.value = "";
+		}
+	</script>
 </html>
