@@ -29,7 +29,9 @@ Route::get('/questions/{question}/edit_question', [QuestionController::class, 'e
 Route::put('/questions/{question}/delete_file', [QuestionController::class, 'deleteFile']);
 Route::put('/questions/{question}', [QuestionController::class, 'questionUpdate']);
 
-Route::get('/answers/{answer}/edit_answer', [AnswerController::class, 'editAnswer']);
+Route::get('/answers/{answer}/edit_answer/', [AnswerController::class, 'editAnswer']);
+Route::put('/answers/{answer}/delete_file', [AnswerController::class, 'deleteFile']);
+Route::put('/answers/{answer}/answer_put', [AnswerController::class, 'answerUpdate']);
 
 Route::delete('/home/{question}', [QuestionController::class, 'deleteQuestion']);
 Route::delete('/answers/{answer}', [AnswerController::class, 'deleteAnswer']);

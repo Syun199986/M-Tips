@@ -41,7 +41,7 @@ class QuestionController extends Controller
         
         return redirect('/home');
     }
-    public function editQuestion(Request $req, Question $question)
+    public function editQuestion(Question $question)
     {
         return view('questions/edit_question')->with(['question' => $question]);
     }

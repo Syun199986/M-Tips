@@ -41,9 +41,35 @@ class AnswerController extends Controller
         
         return redirect('/'.$question->id.'/all_answers');
     }
-    public function editAnswer(Answer $answer)
+    public function editAnswer(Question $question, Answer $answer)
     {
-        return view('answers/edit_answer');
+        return view('answers/edit_answer')->with(['question' => $question])->with(['answer' => $answer]);
+    }
+    public function deleteFile(Request $req, AnswerPostRequest $request, Answer $answer)
+    {
+        $answer->where('id', $answer->id)->update(['file_path' => NULL]);
+        return redirect('/answers/'.$answer->id.'/edit_answer');
+    }
+    public function answerUpdate(Request $req, AnswerPostRequest $request, Answer $answer)
+    {
+        $input = $request['answer'];
+        $answer->fill($input)->save();
+
+        //ファイルの保存
+        if($req->answer_file){
+        
+            if($req->answer_file->extension() == 'gif' 
+            || $req->answer_file->extension() == 'jpeg' 
+            || $req->answer_file->extension() == 'jpg' 
+            || $req->answer_file->extension() == 'png'
+            || $req->answer_file->extension() == 'mp3')
+            {
+                $req->file('answer_file')->storeAs('public/answer_file', $answer->id.'.'.$req->answer_file->extension());
+                $answer->where('id', $answer->id)->update(['file_path' => "/storage/answer_file/".$answer->id.'.'.$req->answer_file->extension()]);
+            }
+        }        
+        
+        return redirect('/'.$answer->question_id.'/all_answers');
     }
     public function deleteAnswer(Answer $answer)
     {
