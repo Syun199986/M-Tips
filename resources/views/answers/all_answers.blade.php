@@ -58,20 +58,49 @@
 					<option value="3">回答数順</option>
 				</select>
 			</div>
-			<div class="answers container text-center border border-dark border-2 rounded-3">
-				<div class='answer'>
-					<h2 class='title row align-items-start'>回答タイトル</h2>
-					<div class="d-flex justify-content-between">
-						<p class="row align-items-start">2022/11/5(投稿日付)</p>
-						<a href="/edit_answer">回答の編集・削除</a>
-					</div>
-					<p class='body row align-items-start'>回答文</p>
-					<div class="d-flex justify-content-between">
-						<button type="button" class="">★いいね！</button>
+			@foreach ($answers as $answer)
+				<div class="answers container text-center border border-dark border-2 rounded-3 mb-3">
+					<div class='answer'>
+						<div class="d-flex justify-content-between">
+							<p class="row align-items-start">{{ $answer->created_at }}</p>
+						</div>
+						<div class="d-flex justify-content-between">
+							<a href="/questions/{{ $question->id }}/answers/{{ $answer->id }}/edit_answer">回答の編集</a>
+						</div>
+						<div class="d-flex justify-content-between">
+							<form action="/{{ $question->id }}/all_answers/{{ $answer->id }}" id="form_{{ $answer->id }}" method="post">
+								@csrf
+								@method('DELETE')
+								<a href="#" onclick="deleteAnswer({{ $answer->id }})" style="color:red">回答の削除</a>
+							</form>
+						</div>
+						<p class='body row align-items-start'>{{ $answer->body }}</p>
+						@if(strrpos($answer->file_path, '.png'))
+						    <img src="{{ $answer->file_path }}">
+						@elseif(strrpos($answer->file_path, '.mp3'))
+							<audio controls src="{{ $answer->file_path }}">
+					            <a href="{{ $answer->file_path }}">
+					            	Download audio
+            					</a>
+            				</audio>
+						@endif						
+						<div class="d-flex justify-content-between">
+							<div>
+								<button type="button" class="">★いいね！</button>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
+			@endforeach
 		</main>
 	</body>
-
+	<script>
+		function deleteAnswer(id) {
+			'use strict'
+			
+			if (confirm('回答を削除しますか？')) {
+				document.getElementById(`form_${id}`).submit();
+			}
+		}
+	</script>
 </html>

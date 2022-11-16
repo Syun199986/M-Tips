@@ -16,13 +16,23 @@ use App\Http\Controllers\AnswerController;
 */
 
 Route::get('/home', [QuestionController::class, 'home']);
+
 Route::get('/post_question', [QuestionController::class, 'postQuestion']);
-Route::get('/home/{question}', [AnswerController::class, 'postAnswer']);
 Route::post('/home', [QuestionController::class, 'storeQuestion']);
+
+Route::get('/{question}/all_answers', [AnswerController::class, 'allAnswers']);
+
+Route::get('/{question}/post_answer', [AnswerController::class, 'postAnswer']);
+Route::post('/{question}/all_answers/store', [AnswerController::class, 'storeAnswer']);
+
 Route::get('/questions/{question}/edit_question', [QuestionController::class, 'editQuestion']);
 Route::put('/questions/{question}/delete_file', [QuestionController::class, 'deleteFile']);
 Route::put('/questions/{question}', [QuestionController::class, 'questionUpdate']);
+
+Route::get('/questions/{question}/answers/{answer}/edit_answer', [AnswerController::class, 'editAnswer']);
+
 Route::delete('/home/{question}', [QuestionController::class, 'deleteQuestion']);
+Route::delete('/{question}/all_answers/{answer}', [AnswerController::class, 'deleteAnswer']);
+
 Route::get('/my_posted_questions', [QuestionController::class, 'myPostedQuestions']);
-Route::get('/all_answers', [AnswerController::class, 'allAnswers']);
 Route::get('/my_posted_answers', [AnswerController::class, 'myPostedAnswers']);

@@ -88,11 +88,11 @@
 							<div>
 								<button type="button" class="">★気になる！</button>
 								<div>
-									<a href="/all_answers">回答を見る</a>
+									<a href="/{{ $question->id }}/all_answers">回答を見る</a>
 								</div>
 							</div>
 							<div class="border border-dark border-2 rounded-3 row align-items-center">
-		  						<a class="" href="/home/{{ $question->id }}">回答する</a>
+		  						<a class="" href="/{{ $question->id }}/post_answer">回答する</a>
 		  					</div>
 						</div>
 					</div>
