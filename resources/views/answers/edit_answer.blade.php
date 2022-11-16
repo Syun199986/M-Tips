@@ -50,28 +50,54 @@
 			</nav>
 		</header>
 		<main>
-			<div class="questions container text-center border border-dark border-2 rounded-3 my-3">
-				<div class='question'>
-					<h2 class='title row align-items-start'>質問タイトル</h2>
-					<p class="row align-items-start">音楽カテゴリ</p>
-					<p class='body row align-items-start'>質問文</p>
-				</div>
+			<!--<div class="questions container text-center border border-dark border-2 rounded-3 my-3">-->
+			<!--	<div class='question'>-->
+			<!--		<h2 class='title row align-items-start'>{{ $question->title }}</h2>-->
+			<!--		<p class="row align-items-start">音楽カテゴリ：{{ $question->category_id }}</p>-->
+			<!--		<p class='body row align-items-start'>{{ $question->body }}</p>-->
+			<!--	</div>-->
+			<!--</div>-->
+			<div class="post_answer container border border-dark border-2 rounded-3 my-3" id="answer_form">
+				<form action="/answers/{{ $answer->id }}/answer_put" method="POST" enctype="multipart/form-data">
+				@csrf
+				@method("PUT")
+	                <div class="mb-3">
+	                    <h2 class="form-label">回答文</h2>
+	                    <textarea class="form-control" name="answer[body]" rows="3">{{ $answer->body }}</textarea>
+	                    <!--<textarea form="text_form" class="form-control" name="question[body]" rows="3">{{ $question->body }}</textarea>-->
+	                    <p class="title__error" style="color:red">{{ $errors->first('answer.body') }}</p>
+	                </div>
+						@if($answer->file_path == NULL)
+			                <div class="d-flex justify-content-between">
+						      	<input type="file" name="answer_file" id="answer_file" class=""/>
+							    <button type="submit" class="">編集を完了</button>
+							</div>
+							<input type="button" id="file_clear" value="ファイル選択解除" onclick="fileClear();"/>
+						@else
+		                	<div class="d-flex justify-content-between">
+								<button type="submit" formaction="/answers/{{ $answer->id }}/delete_file" id="delete_file">
+									ファイルを削除
+								</button>								
+								<button type="submit" class="">編集を完了</button>
+							</div>
+							@if(strrpos($answer->file_path, '.png'))
+							    <img src="{{ $answer->file_path }}">
+							@elseif(strrpos($answer->file_path, '.mp3'))
+								<audio controls src="{{ $answer->file_path }}">
+						            <a href="{{ $answer->file_path }}">
+						            	Download audio
+	            					</a>
+	            				</audio>
+							@endif
+						@endif
+				</form>
 			</div>
-			<div class="questions container text-center border border-dark border-2 rounded-3">
-                <div class="mb-3">
-                    <h2 class="form-label row align-items-start">回答文</h2>
-                    <textarea class="form-control" id="" rows="3" placeholder="(投稿した回答文)"></textarea>
-                </div>
-                <div class="d-flex justify-content-between">
-      				<button type="button" class="">♪音楽・動画ファイルを追加</button>
-      				<div>
-          				<button type="button" class="">回答を削除</button>
-          				<button type="button" class="">編集を完了</button>
-      				</div>
-				</div>
-			</div>
-
 		</main>
 	</body>
-
+	<script>
+		function fileClear(){
+		  let qfile = document.getElementById("answer_file");
+		  qfile.value = "";
+		}
+	</script>
 </html>

@@ -72,7 +72,6 @@
 								@csrf
 								@method('DELETE')
 								<a href="#" onclick="deleteAnswer({{ $answer->id }})" style="color:red">回答の削除</a>
-								<!--<button type="button" onclick="deleteAnswer({{ $answer->id }})" style="color:red">回答の削除</button>-->
 							</form>
 						</div>
 						<p class='body row align-items-start'>{{ $answer->body }}</p>
