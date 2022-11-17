@@ -50,7 +50,7 @@
 			</nav>
 		</header>
 		<main>
-				<div class="questions container text-center border border-dark border-2 rounded-3 mb-3">
+				<div class="questions container text-center border border-dark border-2 rounded-3 my-3">
 					<div class='question'>
 						<h2 class='title row align-items-start'>{{ $question->title }}</h2>
 						<div class="d-flex justify-content-between">
