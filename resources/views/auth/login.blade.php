@@ -1,4 +1,3 @@
-<!--<script src="https://cdn.tailwindcss.com"></script>-->
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
