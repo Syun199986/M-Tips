@@ -17,6 +17,10 @@ class Question extends Model
         'category_id'
     ];
     
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -24,9 +28,5 @@ class Question extends Model
     public function answers()
     {
         return $this->hasMany(Answer::class);
-    }
-    public function users()
-    {
-        return $this->belongsToMany(User::class);
     }
 }

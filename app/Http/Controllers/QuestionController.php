@@ -18,12 +18,17 @@ class QuestionController extends Controller
     }
     public function postQuestion(Question $question)
     {
-        return view('questions/post_question');
+        return view('questions/post_question')->with(['question' => $question]);
     }
-    public function storeQuestion(Request $req, QuestionPostRequest $request, Question $question)
+    public function storeQuestion(Request $req, QuestionPostRequest $request, Question $question, User $user)
     {
         $input = $request['question'];
+        $user_id = $req->user_id;
+        $question_id = $req->question_id;
+        
         $question->fill($input)->save();
+        $question->users()->sync($user_id);
+        $user->questions()->sync($question_id);
 
         //ファイルの保存
         if($req->question_file){

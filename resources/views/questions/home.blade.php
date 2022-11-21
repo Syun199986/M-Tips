@@ -36,7 +36,8 @@
 								<a class="nav-link" aria-current="page" href="#">ログアウト</a>
 							</li>
 						</ul>
-						<p class="mx-3 my-2">ログインユーザー：{{ Auth::user()->id }}</p>
+						<p class="mx-3 my-2">ログインユーザーID：{{ Auth::user()->id }}</p>
+						<p class="mx-3 my-2">ログインユーザー名：{{ Auth::user()->name }}</p>
 						<select class="form-select w-auto" aria-label="Default select example">
 							<option selected>▼カテゴリ選択</option>
 							<option value="1">1</option>
@@ -64,7 +65,7 @@
 				<div class="questions container text-center border border-dark border-2 rounded-3 mb-3">
 					<div class='question'>
 						<h2 class='title row align-items-start'>{{ $question->title }}</h2>
-						<p class="row align-items-start">ログインユーザー：{{ Auth::user()->name }}</p>
+						<!--<p class="row align-items-start">投稿ユーザー：</p>-->
 						<div class="d-flex justify-content-between">
 							<p class="row align-items-start">{{ $question->created_at }}</p>
 							<a href="/questions/{{ $question->id }}/edit_question">質問の編集</a>
