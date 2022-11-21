@@ -42,13 +42,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
+    public function questions()
+    {
+        return $this->belongsToMany(Question::class);
+    }
+    
     public function answers()
     {
         return $this->belongsToMany(Answer::class);
     }
     
-    public function questions()
-    {
-        return $this->belongsToMany(Question::class);
-    }
 }

@@ -16,12 +16,12 @@ class Answer extends Model
         'question_id'
     ];
     
-    public function question()
-    {
-        return $this->belongsTo(Question::class);
-    }
     public function users()
     {
         return $this->belongsToMany(User::class);
+    }
+    public function question()
+    {
+        return $this->belongsTo(Question::class);
     }
 }
