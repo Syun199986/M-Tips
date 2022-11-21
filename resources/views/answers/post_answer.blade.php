@@ -84,6 +84,8 @@
 	      				<input type="submit" value="投稿する" class=""/>
 					</div>
 		      		<input type="hidden" name="answer[question_id]" value="{{ $question->id }}"/>
+		      		<input type="hidden" name="user_id" value="{{ Auth::user()->id }}"/>
+		      		<input type="hidden" name="answer_id" value="{{ $answer->id }}"/>
 				</form>
 				<input type="button" id="file_clear" value="ファイル選択解除" onclick="fileClear();"/>
 			</div>

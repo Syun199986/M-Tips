@@ -18,13 +18,18 @@ class AnswerController extends Controller
     }
     public function postAnswer(Answer $answer, Question $question)
     {
-        return view('answers/post_answer')->with(['question' => $question]);
+        return view('answers/post_answer')->with(['question' => $question])->with(['answer' => $answer]);
     }
-    public function storeAnswer(Request $req, AnswerPostRequest $request, Answer $answer, Question $question)
+    public function storeAnswer(Request $req, AnswerPostRequest $request, Answer $answer, Question $question, User $user)
     {
         $input = $request['answer'];
-        $answer->fill($input)->save();
+        $user_id = $req->user_id;
+        $answer_id = $req->question_id;
 
+        $answer->fill($input)->save();
+        $answer->users()->sync($user_id);
+        $user->answers()->sync($answer_id);
+        
         //ファイルの保存
         if($req->answer_file){
         
