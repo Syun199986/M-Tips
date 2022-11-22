@@ -9,6 +9,7 @@ use App\Models\Question;
 use App\Models\User;
 use App\Http\Requests\QuestionPostRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
@@ -81,8 +82,14 @@ class QuestionController extends Controller
         $question->delete();
         return redirect('/home');
     }
-    public function myPostedQuestions(Question $question)
+    public function myPostedQuestions(Question $question, User $user)
     {
-        return view('questions/my_posted_questions');
+        $user_id = Auth::user()->id;
+        
+        // return view('questions/my_posted_questions')->with(['user_questions' => $question->whereHas('id', function ($question) use ($user_id) {
+        //     $question->where('id', '==', $user_id);
+        // })->get()]);
+        
+        return view('questions/my_posted_questions')->with(['user_questions' => $question->get()]);
     }
 }
