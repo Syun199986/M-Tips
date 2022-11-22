@@ -1,3 +1,4 @@
+<x-guest-layout>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -66,26 +67,48 @@
 					<option value="3">回答数順</option>
 				</select>
 			</div>
-			<div class="questions container text-center border border-dark border-2 rounded-3">
-				<div class='question'>
-					<h2 class='title row align-items-start'>投稿した質問タイトル</h2>
-					<div class="d-flex justify-content-between">
-						<p class="row align-items-start">2022/11/5(投稿日付)</p>
-						<a href="/edit_question">質問の編集・削除</a>
-					</div>
-					<p class="row align-items-start">音楽カテゴリ</p>
-					<p class='body row align-items-start'>投稿した質問文</p>
-					<div class="d-flex justify-content-between">
-						<div>
-							<p class="row align-items-start">★気になる！：10(数字カウント)</p>
-							<div class="row align-items-start">
-								<a class="row align-items-start" href="/all_answers">回答を見る</a>
+			@foreach ($user_questions as $question)
+				<div class="questions container text-center border border-dark border-2 rounded-3 mb-3">
+					<div class='question'>
+						<h2 class='title row align-items-start'>{{ $question->title }}</h2>
+						<!--<p class="row align-items-start">投稿ユーザー：</p>-->
+						<div class="d-flex justify-content-between">
+							<p class="row align-items-start">{{ $question->created_at }}</p>
+							<a href="/questions/{{ $question->id }}/edit_question">質問の編集</a>
+						</div>
+						<div class="d-flex justify-content-between">
+							<p class="row align-items-start">音楽カテゴリ：{{ $question->category_id }}</p>
+							<form action="/home/{{ $question->id }}" id="form_{{ $question->id }}" method="post">
+								@csrf
+								@method('DELETE')
+								<a href="#" onclick="deleteQuestion({{ $question->id }})" style="color:red">質問の削除</a>
+							</form>
+						</div>
+						<p class='body row align-items-start'>{{ $question->body }}</p>
+						@if(strrpos($question->file_path, '.png'))
+						    <img src="{{ $question->file_path }}">
+						@elseif(strrpos($question->file_path, '.mp3'))
+							<audio controls src="{{ $question->file_path }}">
+					            <a href="{{ $question->file_path }}">
+					            	Download audio
+            					</a>
+            				</audio>
+						@endif						
+						<div class="d-flex justify-content-between">
+							<div>
+								<button type="button" class="bg-yellow-500 text-white rounded px-2 py-1 mb-2">★気になる！</button>
+								<div>
+									<a href="/{{ $question->id }}/all_answers">回答を見る</a>
+								</div>
 							</div>
+							<div class="border border-dark border-2 rounded-3 row align-items-center">
+		  						<a class="" href="/{{ $question->id }}/post_answer">回答する</a>
+		  					</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			@endforeach
 		</main>
 	</body>
-
 </html>
+</x-guest-layout>
