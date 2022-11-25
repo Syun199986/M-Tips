@@ -33,7 +33,14 @@
 								<a class="nav-link" aria-current="page" href="/my_posted_questions">マイ投稿</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="#">ログアウト</a>
+								<form method="POST" action="{{ route('logout') }}">
+                            	@csrf
+									<a class="nav-link" aria-current="page" href="route('logout')" 
+											onclick="event.preventDefault();
+                                            			this.closest('form').submit();">
+										ログアウト
+									</a>
+								</form>
 							</li>
 						</ul>
 						<p class="mx-3 my-2">ログインユーザーID：{{ Auth::user()->id }}</p>
