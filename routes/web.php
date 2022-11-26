@@ -16,13 +16,13 @@ use App\Http\Controllers\AnswerController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -32,11 +32,11 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/home', [QuestionController::class, 'home']);
+Route::get('/', [QuestionController::class, 'home']);
 
 Route::group(['middleware' => ['auth']], function(){
     Route::get('/post_question', [QuestionController::class, 'postQuestion']);
-    Route::post('/home', [QuestionController::class, 'storeQuestion']);
+    Route::post('/', [QuestionController::class, 'storeQuestion']);
     
     Route::get('/{question}/all_answers', [AnswerController::class, 'allAnswers']);
     
@@ -51,7 +51,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::put('/answers/{answer}/delete_file', [AnswerController::class, 'deleteFile']);
     Route::put('/answers/{answer}/answer_put', [AnswerController::class, 'answerUpdate']);
     
-    Route::delete('/home/{question}', [QuestionController::class, 'deleteQuestion']);
+    Route::delete('/{question}/delete', [QuestionController::class, 'deleteQuestion']);
     Route::delete('/answers/{answer}', [AnswerController::class, 'deleteAnswer']);
     
     Route::get('/my_posted_questions', [QuestionController::class, 'myPostedQuestions']);
