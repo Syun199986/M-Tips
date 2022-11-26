@@ -45,7 +45,7 @@ class QuestionController extends Controller
             }
         }        
         
-        return redirect('/home');
+        return redirect('/');
     }
     public function editQuestion(Question $question)
     {
@@ -75,12 +75,12 @@ class QuestionController extends Controller
             }
         }        
         
-        return redirect('/home');
+        return redirect('/');
     }
     public function deleteQuestion(Question $question)
     {
         $question->delete();
-        return redirect('/home');
+        return redirect('/');
     }
     public function myPostedQuestions(Question $question, User $user)
     {
