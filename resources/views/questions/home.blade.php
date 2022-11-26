@@ -29,22 +29,26 @@
 							<li class="nav-item">
 								<a class="nav-link" aria-current="page" href="/post_question">質問投稿</a>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="/my_posted_questions">マイ投稿</a>
-							</li>
-							<li class="nav-item">
-								<form method="POST" action="{{ route('logout') }}">
-                            	@csrf
-									<a class="nav-link" aria-current="page" href="route('logout')" 
-											onclick="event.preventDefault();
-                                            			this.closest('form').submit();">
-										ログアウト
-									</a>
-								</form>
-							</li>
+							@auth
+								<li class="nav-item">
+									<a class="nav-link" aria-current="page" href="/my_posted_questions">マイ投稿</a>
+								</li>
+								<li class="nav-item">
+									<form method="POST" action="{{ route('logout') }}">
+	                            	@csrf
+										<a class="nav-link" aria-current="page" href="route('logout')" 
+												onclick="event.preventDefault();
+	                                            			this.closest('form').submit();">
+											ログアウト
+										</a>
+									</form>
+								</li>
+							@else
+								<li class="nav-item">
+									<a class="nav-link" aria-current="page" href="/login">ログイン</a>
+								</li>
+							@endauth
 						</ul>
-						<p class="mx-3 my-2">ログインユーザーID：{{ Auth::user()->id }}</p>
-						<p class="mx-3 my-2">ログインユーザー名：{{ Auth::user()->name }}</p>
 						<select class="form-select w-auto" aria-label="Default select example">
 							<option selected>▼カテゴリ選択</option>
 							<option value="1">1</option>
@@ -75,15 +79,19 @@
 						<!--<p class="row align-items-start">投稿ユーザー：</p>-->
 						<div class="d-flex justify-content-between">
 							<p class="row align-items-start">{{ $question->created_at }}</p>
-							<a href="/questions/{{ $question->id }}/edit_question">質問の編集</a>
+							@auth
+								<a href="/questions/{{ $question->id }}/edit_question">質問の編集</a>
+							@endauth
 						</div>
 						<div class="d-flex justify-content-between">
 							<p class="row align-items-start">音楽カテゴリ：{{ $question->category_id }}</p>
-							<form action="/home/{{ $question->id }}" id="form_{{ $question->id }}" method="post">
-								@csrf
-								@method('DELETE')
-								<a href="#" onclick="deleteQuestion({{ $question->id }})" style="color:red">質問の削除</a>
-							</form>
+							@auth
+								<form action="/home/{{ $question->id }}" id="form_{{ $question->id }}" method="post">
+									@csrf
+									@method('DELETE')
+									<a href="#" onclick="deleteQuestion({{ $question->id }})" style="color:red">質問の削除</a>
+								</form>
+							@endauth
 						</div>
 						<p class='body row align-items-start'>{{ $question->body }}</p>
 						@if(strrpos($question->file_path, '.png'))
