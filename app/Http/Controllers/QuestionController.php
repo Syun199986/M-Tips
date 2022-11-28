@@ -85,11 +85,9 @@ class QuestionController extends Controller
     public function myPostedQuestions(Question $question, User $user)
     {
         $user_id = Auth::user()->id;
-        
-        // return view('questions/my_posted_questions')->with(['user_questions' => $question->whereHas('id', function ($question) use ($user_id) {
-        //     $question->where('id', '==', $user_id);
-        // })->get()]);
-        
-        return view('questions/my_posted_questions')->with(['user_questions' => $question->get()]);
+
+        return view('questions/my_posted_questions')->with(['user_questions' => $question->whereHas('users', function ($question) use ($user_id) {
+            $question->where('user_id', $user_id);
+        })->get()]);
     }
 }
