@@ -76,22 +76,22 @@
 				<div class="questions container text-center border border-dark border-2 rounded-3 mb-3">
 					<div class='question'>
 						<h2 class='title row align-items-start'>{{ $question->title }}</h2>
-						<!--<p class="row align-items-start">投稿ユーザー：</p>-->
+						<p class="row align-items-start">質問ユーザー：{{ $question->user_name }}</p>
 						<div class="d-flex justify-content-between">
 							<p class="row align-items-start">{{ $question->created_at }}</p>
-							@auth
-								<a href="/questions/{{ $question->id }}/edit_question">質問の編集</a>
-							@endauth
+							<!--@auth-->
+							<!--	<a href="/questions/{{ $question->id }}/edit_question">質問の編集</a>-->
+							<!--@endauth-->
 						</div>
 						<div class="d-flex justify-content-between">
 							<p class="row align-items-start">音楽カテゴリ：{{ $question->category_id }}</p>
-							@auth
-								<form action="/{{ $question->id }}/delete" id="form_{{ $question->id }}" method="post">
-									@csrf
-									@method('DELETE')
-									<a href="#" onclick="deleteQuestion({{ $question->id }})" style="color:red">質問の削除</a>
-								</form>
-							@endauth
+							<!--@auth-->
+							<!--	<form action="/{{ $question->id }}/delete" id="form_{{ $question->id }}" method="post">-->
+							<!--		@csrf-->
+							<!--		@method('DELETE')-->
+							<!--		<a href="#" onclick="deleteQuestion({{ $question->id }})" style="color:red">質問の削除</a>-->
+							<!--	</form>-->
+							<!--@endauth-->
 						</div>
 						<p class='body row align-items-start'>{{ $question->body }}</p>
 						@if(strrpos($question->file_path, '.png'))

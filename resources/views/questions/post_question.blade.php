@@ -77,6 +77,7 @@
 	      				<input type="file" name="question_file" class="" id="question_file"/>
 	      				<input type="submit" value="投稿する" class=""/>
 					</div>
+		      		<input type="hidden" name="question[user_name]" value="{{ Auth::user()->name }}"/>
 		      		<input type="hidden" name="user_id" value="{{ Auth::user()->id }}"/>
 		      		<input type="hidden" name="question_id" value="{{ $question->id }}"/>
 				</form>

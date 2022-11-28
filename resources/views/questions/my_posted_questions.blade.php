@@ -78,7 +78,7 @@
 						</div>
 						<div class="d-flex justify-content-between">
 							<p class="row align-items-start">音楽カテゴリ：{{ $question->category_id }}</p>
-							<form action="/{{ $question->id }}" id="form_{{ $question->id }}" method="post">
+							<form action="/{{ $question->id }}/delete" id="form_{{ $question->id }}" method="post">
 								@csrf
 								@method('DELETE')
 								<a href="#" onclick="deleteQuestion({{ $question->id }})" style="color:red">質問の削除</a>
@@ -110,5 +110,14 @@
 			@endforeach
 		</main>
 	</body>
+	<script>
+		function deleteQuestion(id) {
+			'use strict'
+			
+			if (confirm('質問を削除しますか？')) {
+				document.getElementById(`form_${id}`).submit();
+			}
+		}
+	</script>
 </html>
 </x-guest-layout>

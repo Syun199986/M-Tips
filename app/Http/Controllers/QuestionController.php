@@ -75,12 +75,12 @@ class QuestionController extends Controller
             }
         }        
         
-        return redirect('/');
+        return redirect('/my_posted_questions');
     }
     public function deleteQuestion(Question $question)
     {
         $question->delete();
-        return redirect('/');
+        return redirect('/my_posted_questions');
     }
     public function myPostedQuestions(Question $question, User $user)
     {
