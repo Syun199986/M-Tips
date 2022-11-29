@@ -31,6 +31,8 @@ class AnswerController extends Controller
         $answer->users()->sync($user_id);
         $user->answers()->sync($answer_id);
         
+        $question->where('id', $answer->question_id)->update(['answers_num' => $answer->where('question_id', $question->id)->count()]);
+
         //ファイルの保存
         if($req->answer_file){
         
@@ -77,7 +79,7 @@ class AnswerController extends Controller
         
         return redirect('/my_posted_answers');
     }
-    public function deleteAnswer(Answer $answer)
+    public function deleteAnswer(Answer $answer, Question $question)
     {
         $answer->delete();
         return back();

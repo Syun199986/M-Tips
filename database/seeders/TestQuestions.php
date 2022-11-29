@@ -24,6 +24,7 @@ class TestQuestions extends Seeder
                 'user_name' => 'TestUser',
                 'body' => 'TestUserの質問です',
                 'file_path' => NULL,
+                'answers_num' => 1,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
                 'deleted_at' => NULL
@@ -34,6 +35,7 @@ class TestQuestions extends Seeder
                 'user_name' => 'TestUser2',
                 'body' => 'TestUser2の質問です',
                 'file_path' => NULL,
+                'answers_num' => 1,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
                 'deleted_at' => NULL

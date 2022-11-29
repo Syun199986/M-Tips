@@ -13,10 +13,9 @@ use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
-    public function home(Question $question, Request $request)
+    public function home(Question $question, Answer $answer, Request $request)
     {
-        // dd($request);
-        return view('questions/home')->with(['questions' => $question->order($request->sort)]);
+        return view('questions/home')->with(['questions' => $question->order($request->sort)])->with(['answer' => $answer]);
     }
     public function postQuestion(Question $question)
     {
