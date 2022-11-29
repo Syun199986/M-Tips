@@ -23,6 +23,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
                 TestCategory::class,
                 TestUser::class,
+                TestQuestions::class,
+                TestAnswers::class,
+                TestQuestionUser::class,
+                TestAnswerUser::class
         ]);
     }
 }
