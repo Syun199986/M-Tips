@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
-    public function home(Question $question)
+    public function home(Question $question, Request $request)
     {
-        return view('questions/home')->with(['questions' => $question->get()]);
+        // dd($request);
+        return view('questions/home')->with(['questions' => $question->order($request->sort)]);
     }
     public function postQuestion(Question $question)
     {
