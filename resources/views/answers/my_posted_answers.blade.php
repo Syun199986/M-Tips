@@ -32,7 +32,14 @@
 								<a class="nav-link active" aria-current="page" href="/my_posted_questions">マイ投稿</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="#">ログアウト</a>
+								<form method="POST" action="{{ route('logout') }}">
+	                            @csrf
+									<a class="nav-link" aria-current="page" href="route('logout')" 
+											onclick="event.preventDefault();
+	                                           			this.closest('form').submit();">
+										ログアウト
+									</a>
+								</form>
 							</li>
 						</ul>
 						<select class="form-select w-auto" aria-label="Default select example">
@@ -56,7 +63,7 @@
 						<a class="nav-link" aria-current="page" href="/my_posted_questions">投稿した質問</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link active" href="/my_posted_answers">回答した質問</a>
+						<a class="nav-link active" href="/my_posted_answers">投稿した回答</a>
 					</li>
 				</ul>
 				<select class="form-select w-auto mx-2" aria-label="Default select example">
@@ -66,26 +73,50 @@
 					<option value="3">回答数順</option>
 				</select>
 			</div>
-			<div class="questions container text-center border border-dark border-2 rounded-3">
-				<div class='question'>
-					<h2 class='title row align-items-start'>質問タイトル</h2>
-						<p class="row align-items-start">2022/11/5(投稿日付)</p>
-					<p class="row align-items-start">音楽カテゴリ</p>
-					<p class='body row align-items-start'>質問文</p>
-					<div class="d-flex justify-content-between">
-						<div>
-							<button type="button" class="">★気になる！</button>
+			@foreach ($user_answers as $answer)
+				<div class="answers container text-center border border-dark border-2 rounded-3 mb-3">
+					<div class='answer'>
+						<div class="d-flex justify-content-between">
+							<p class="row align-items-start">{{ $answer->created_at }}</p>
+						</div>
+						<div class="d-flex justify-content-between">
+							<a href="/answers/{{ $answer->id }}/edit_answer">回答の編集</a>
+						</div>
+						<div class="d-flex justify-content-between">
+							<form action="/answers/{{ $answer->id }}" id="form_{{ $answer->id }}" method="post">
+								@csrf
+								@method('DELETE')
+								<a href="#" onclick="deleteAnswer({{ $answer->id }})" style="color:red">回答の削除</a>
+							</form>
+						</div>
+						<p class='body row align-items-start'>{{ $answer->body }}</p>
+						@if(strrpos($answer->file_path, '.png'))
+						    <img src="{{ $answer->file_path }}">
+						@elseif(strrpos($answer->file_path, '.mp3'))
+							<audio controls src="{{ $answer->file_path }}">
+					            <a href="{{ $answer->file_path }}">
+					            	Download audio
+            					</a>
+            				</audio>
+						@endif						
+						<div class="d-flex justify-content-between">
 							<div>
-								<a href="/all_answers">回答を見る</a>
+								<button type="button" class="">★いいね数</button>
 							</div>
 						</div>
-						<div class="border border-dark border-2 rounded-3 row align-items-center">
-  							<a class="col" href="/post_answer">回答する</a>
-  						</div>
 					</div>
 				</div>
-			</div>
+			@endforeach
 		</main>
+		<script>
+			function deleteAnswer(id) {
+				'use strict'
+				
+				if (confirm('回答を削除しますか？')) {
+					document.getElementById(`form_${id}`).submit();
+				}
+			}
+		</script>
 	</body>
 
 </html>

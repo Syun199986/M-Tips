@@ -32,7 +32,14 @@
 								<a class="nav-link" aria-current="page" href="/my_posted_questions">マイ投稿</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="#">ログアウト</a>
+								<form method="POST" action="{{ route('logout') }}">
+	                            @csrf
+									<a class="nav-link" aria-current="page" href="route('logout')" 
+											onclick="event.preventDefault();
+	                                           			this.closest('form').submit();">
+										ログアウト
+									</a>
+								</form>
 							</li>
 						</ul>
 						<select class="form-select w-auto" aria-label="Default select example">
@@ -83,6 +90,7 @@
 	      				<input type="file" name="answer_file" class="" id="answer_file"/>
 	      				<input type="submit" value="投稿する" class=""/>
 					</div>
+		      		<input type="hidden" name="answer[user_name]" value="{{ Auth::user()->name }}"/>
 		      		<input type="hidden" name="answer[question_id]" value="{{ $question->id }}"/>
 		      		<input type="hidden" name="user_id" value="{{ Auth::user()->id }}"/>
 		      		<input type="hidden" name="answer_id" value="{{ $answer->id }}"/>

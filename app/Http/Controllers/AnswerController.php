@@ -9,6 +9,7 @@ use App\Models\Question;
 use App\Models\User;
 use App\Http\Requests\AnswerPostRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class AnswerController extends Controller
 {
@@ -74,15 +75,19 @@ class AnswerController extends Controller
             }
         }        
         
-        return redirect('/'.$answer->question_id.'/all_answers');
+        return redirect('/my_posted_answers');
     }
     public function deleteAnswer(Answer $answer)
     {
         $answer->delete();
-        return redirect('/'.$answer->question_id.'/all_answers');
+        return back();
     }
-    public function myPostedAnswers(Answer $answer)
+    public function myPostedAnswers(Answer $answer, User $user)
     {
-        return view('answers/my_posted_answers');
+        $user_id = Auth::user()->id;
+
+        return view('answers/my_posted_answers')->with(['user_answers' => $answer->whereHas('users', function ($answer) use ($user_id) {
+            $answer->where('user_id', $user_id);
+        })->get()]);
     }
 }

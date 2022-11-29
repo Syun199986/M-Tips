@@ -32,7 +32,14 @@
 								<a class="nav-link" aria-current="page" href="/my_posted_questions">マイ投稿</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="#">ログアウト</a>
+								<form method="POST" action="{{ route('logout') }}">
+	                            @csrf
+									<a class="nav-link" aria-current="page" href="route('logout')" 
+											onclick="event.preventDefault();
+	                                           			this.closest('form').submit();">
+										ログアウト
+									</a>
+								</form>
 							</li>
 						</ul>
 						<select class="form-select w-auto" aria-label="Default select example">
@@ -50,27 +57,27 @@
 			</nav>
 		</header>
 		<main>
-			<div class="questions container text-center border border-dark border-2 rounded-3 my-3">
-					<div class='question'>
-						<h2 class='title row align-items-start'>{{ $question->title }}</h2>
-						<div class="d-flex justify-content-between">
-							<p class="row align-items-start">{{ $question->created_at }}</p>
-						</div>
-						<div class="d-flex justify-content-between">
-							<p class="row align-items-start">音楽カテゴリ：{{ $question->category_id }}</p>
-						</div>
-						<p class='body row align-items-start'>{{ $question->body }}</p>
-						@if(strrpos($question->file_path, '.png'))
-						    <img src="{{ $question->file_path }}">
-						@elseif(strrpos($question->file_path, '.mp3'))
-							<audio controls src="{{ $question->file_path }}">
-					            <a href="{{ $question->file_path }}">
-					            	Download audio
-            					</a>
-            				</audio>
-						@endif						
-					</div>
-			</div>
+			<!--<div class="questions container text-center border border-dark border-2 rounded-3 my-3">-->
+			<!--		<div class='question'>-->
+			<!--			<h2 class='title row align-items-start'>{{ $question->title }}</h2>-->
+			<!--			<div class="d-flex justify-content-between">-->
+			<!--				<p class="row align-items-start">{{ $question->created_at }}</p>-->
+			<!--			</div>-->
+			<!--			<div class="d-flex justify-content-between">-->
+			<!--				<p class="row align-items-start">音楽カテゴリ：{{ $question->category_id }}</p>-->
+			<!--			</div>-->
+			<!--			<p class='body row align-items-start'>{{ $question->body }}</p>-->
+			<!--			@if(strrpos($question->file_path, '.png'))-->
+			<!--			    <img src="{{ $question->file_path }}">-->
+			<!--			@elseif(strrpos($question->file_path, '.mp3'))-->
+			<!--				<audio controls src="{{ $question->file_path }}">-->
+			<!--		            <a href="{{ $question->file_path }}">-->
+			<!--		            	Download audio-->
+   <!--         					</a>-->
+   <!--         				</audio>-->
+			<!--			@endif						-->
+			<!--		</div>-->
+			<!--</div>-->
 			<div class="post_answer container border border-dark border-2 rounded-3 my-3" id="answer_form">
 				<form action="/answers/{{ $answer->id }}/answer_put" method="POST" enctype="multipart/form-data">
 				@csrf

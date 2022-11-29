@@ -32,7 +32,14 @@
 								<a class="nav-link" aria-current="page" href="/my_posted_questions">マイ投稿</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="#">ログアウト</a>
+								<form method="POST" action="{{ route('logout') }}">
+	                            @csrf
+									<a class="nav-link" aria-current="page" href="route('logout')" 
+											onclick="event.preventDefault();
+	                                           			this.closest('form').submit();">
+										ログアウト
+									</a>
+								</form>
 							</li>
 						</ul>
 						<select class="form-select w-auto" aria-label="Default select example">
@@ -61,19 +68,24 @@
 			@foreach ($answers as $answer)
 				<div class="answers container text-center border border-dark border-2 rounded-3 mb-3">
 					<div class='answer'>
+						<p class="row align-items-start">回答ユーザー：{{ $answer->user_name }}</p>
 						<div class="d-flex justify-content-between">
 							<p class="row align-items-start">{{ $answer->created_at }}</p>
 						</div>
-						<div class="d-flex justify-content-between">
-							<a href="/answers/{{ $answer->id }}/edit_answer">回答の編集</a>
-						</div>
-						<div class="d-flex justify-content-between">
-							<form action="/answers/{{ $answer->id }}" id="form_{{ $answer->id }}" method="post">
-								@csrf
-								@method('DELETE')
-								<a href="#" onclick="deleteAnswer({{ $answer->id }})" style="color:red">回答の削除</a>
-							</form>
-						</div>
+						@foreach($answer->users as $user)
+							@if (Auth::user()->id == $user->id)
+								<div class="d-flex justify-content-between">
+										<a href="/answers/{{ $answer->id }}/edit_answer">回答の編集</a>
+								</div>
+								<div class="d-flex justify-content-between">
+									<form action="/answers/{{ $answer->id }}" id="form_{{ $answer->id }}" method="post">
+										@csrf
+										@method('DELETE')
+										<a href="#" onclick="deleteAnswer({{ $answer->id }})" style="color:red">回答の削除</a>
+									</form>
+								</div>
+				  			@endif
+			  			@endforeach
 						<p class='body row align-items-start'>{{ $answer->body }}</p>
 						@if(strrpos($answer->file_path, '.png'))
 						    <img src="{{ $answer->file_path }}">

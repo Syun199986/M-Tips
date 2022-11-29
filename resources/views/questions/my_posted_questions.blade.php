@@ -33,7 +33,14 @@
 								<a class="nav-link active" aria-current="page" href="/my_posted_questions">マイ投稿</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="#">ログアウト</a>
+								<form method="POST" action="{{ route('logout') }}">
+	                            @csrf
+									<a class="nav-link" aria-current="page" href="route('logout')" 
+											onclick="event.preventDefault();
+	                                           			this.closest('form').submit();">
+										ログアウト
+									</a>
+								</form>
 							</li>
 						</ul>
 						<select class="form-select w-auto" aria-label="Default select example">
@@ -57,7 +64,7 @@
 						<a class="nav-link active" aria-current="page" href="/my_posted_questions">投稿した質問</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/my_posted_answers">回答した質問</a>
+						<a class="nav-link" href="/my_posted_answers">投稿した回答</a>
 					</li>
 				</ul>
 				<select class="form-select w-auto mx-2" aria-label="Default select example">
@@ -78,7 +85,7 @@
 						</div>
 						<div class="d-flex justify-content-between">
 							<p class="row align-items-start">音楽カテゴリ：{{ $question->category_id }}</p>
-							<form action="/{{ $question->id }}" id="form_{{ $question->id }}" method="post">
+							<form action="/{{ $question->id }}/delete" id="form_{{ $question->id }}" method="post">
 								@csrf
 								@method('DELETE')
 								<a href="#" onclick="deleteQuestion({{ $question->id }})" style="color:red">質問の削除</a>
@@ -96,19 +103,28 @@
 						@endif						
 						<div class="d-flex justify-content-between">
 							<div>
-								<button type="button" class="bg-yellow-500 text-white rounded px-2 py-1 mb-2">★気になる！</button>
+								<button type="button" class="bg-yellow-500 text-white rounded px-2 py-1 mb-2">★気になる数</button>
 								<div>
 									<a href="/{{ $question->id }}/all_answers">回答を見る</a>
 								</div>
 							</div>
-							<div class="border border-dark border-2 rounded-3 row align-items-center">
-		  						<a class="" href="/{{ $question->id }}/post_answer">回答する</a>
-		  					</div>
+							<!--<div class="border border-dark border-2 rounded-3 row align-items-center">-->
+		  			<!--			<a class="" href="/{{ $question->id }}/post_answer">回答する</a>-->
+		  			<!--		</div>-->
 						</div>
 					</div>
 				</div>
 			@endforeach
 		</main>
 	</body>
+	<script>
+		function deleteQuestion(id) {
+			'use strict'
+			
+			if (confirm('質問を削除しますか？')) {
+				document.getElementById(`form_${id}`).submit();
+			}
+		}
+	</script>
 </html>
 </x-guest-layout>
