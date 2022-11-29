@@ -57,7 +57,7 @@
 						<a class="nav-link active" aria-current="page" href="/my_posted_questions">投稿した質問</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/my_posted_answers">回答した質問</a>
+						<a class="nav-link" href="/my_posted_answers">投稿した回答</a>
 					</li>
 				</ul>
 				<select class="form-select w-auto mx-2" aria-label="Default select example">
@@ -96,14 +96,14 @@
 						@endif						
 						<div class="d-flex justify-content-between">
 							<div>
-								<button type="button" class="bg-yellow-500 text-white rounded px-2 py-1 mb-2">★気になる！</button>
+								<button type="button" class="bg-yellow-500 text-white rounded px-2 py-1 mb-2">★気になる数</button>
 								<div>
 									<a href="/{{ $question->id }}/all_answers">回答を見る</a>
 								</div>
 							</div>
-							<div class="border border-dark border-2 rounded-3 row align-items-center">
-		  						<a class="" href="/{{ $question->id }}/post_answer">回答する</a>
-		  					</div>
+							<!--<div class="border border-dark border-2 rounded-3 row align-items-center">-->
+		  			<!--			<a class="" href="/{{ $question->id }}/post_answer">回答する</a>-->
+		  			<!--		</div>-->
 						</div>
 					</div>
 				</div>

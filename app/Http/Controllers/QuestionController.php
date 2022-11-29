@@ -80,7 +80,7 @@ class QuestionController extends Controller
     public function deleteQuestion(Question $question)
     {
         $question->delete();
-        return redirect('/my_posted_questions');
+        return back();
     }
     public function myPostedQuestions(Question $question, User $user)
     {

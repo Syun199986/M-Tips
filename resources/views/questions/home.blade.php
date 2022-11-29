@@ -79,19 +79,23 @@
 						<p class="row align-items-start">質問ユーザー：{{ $question->user_name }}</p>
 						<div class="d-flex justify-content-between">
 							<p class="row align-items-start">{{ $question->created_at }}</p>
-							<!--@auth-->
-							<!--	<a href="/questions/{{ $question->id }}/edit_question">質問の編集</a>-->
-							<!--@endauth-->
+							@foreach($question->users as $user)
+								@if (Auth::user()->id == $user->id)
+									<a href="/questions/{{ $question->id }}/edit_question">質問の編集</a>
+				  				@endif
+			  				@endforeach
 						</div>
 						<div class="d-flex justify-content-between">
 							<p class="row align-items-start">音楽カテゴリ：{{ $question->category_id }}</p>
-							<!--@auth-->
-							<!--	<form action="/{{ $question->id }}/delete" id="form_{{ $question->id }}" method="post">-->
-							<!--		@csrf-->
-							<!--		@method('DELETE')-->
-							<!--		<a href="#" onclick="deleteQuestion({{ $question->id }})" style="color:red">質問の削除</a>-->
-							<!--	</form>-->
-							<!--@endauth-->
+							@foreach($question->users as $user)
+								@if (Auth::user()->id == $user->id)
+									<form action="/{{ $question->id }}/delete" id="form_{{ $question->id }}" method="post">
+										@csrf
+										@method('DELETE')
+										<a href="#" onclick="deleteQuestion({{ $question->id }})" style="color:red">質問の削除</a>
+									</form>
+				  				@endif
+			  				@endforeach
 						</div>
 						<p class='body row align-items-start'>{{ $question->body }}</p>
 						@if(strrpos($question->file_path, '.png'))
@@ -110,9 +114,13 @@
 									<a href="/{{ $question->id }}/all_answers">回答を見る</a>
 								</div>
 							</div>
-							<div class="border border-dark border-2 rounded-3 row align-items-center">
-		  						<a class="" href="/{{ $question->id }}/post_answer">回答する</a>
-		  					</div>
+							@foreach($question->users as $user)
+								@if (Auth::user()->id != $user->id)
+									<div class="border border-dark border-2 rounded-3 row align-items-center">
+				  						<a class="" href="/{{ $question->id }}/post_answer">回答する</a>
+				  					</div>
+				  				@endif
+			  				@endforeach
 						</div>
 					</div>
 				</div>

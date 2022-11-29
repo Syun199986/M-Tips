@@ -22,7 +22,12 @@ class TestUser extends Seeder
                 'name' => 'TestUser',
                 'email' => 'test@test.com',
                 'password' => bcrypt('testuser'),
-            ]
+            ],
+            [
+                'name' => 'TestUser2',
+                'email' => 'test2@test2.com',
+                'password' => bcrypt('testuser2'),
+            ],
          ]);
     }
 }
