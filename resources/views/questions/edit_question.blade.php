@@ -71,7 +71,7 @@
 	            <!--				<option value="2">2</option>-->
 	            <!--				<option value="3">3</option>-->
 	    				    <!--</select>-->
-		      			<input form="text_form" type="text" name="question[category_id]" class="" value="{{ $question->category_id }}"/>
+		      			<!--<input form="text_form" type="text" name="question[category_id]" class="" value="{{ $question->category_id }}"/>-->
 	                    </div>
                 	</div>
 	                <div class="mb-3">
