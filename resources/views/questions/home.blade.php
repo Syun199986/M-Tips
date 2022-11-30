@@ -12,7 +12,7 @@
 	</head>
 
 	<body>
-		<header class="mb-5">
+		<header>
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="container-fluid">
 					<a class="navbar-brand" href="/">M-Tips</a>
@@ -69,15 +69,15 @@
 			</nav>
 		</header>
 		<main>
-			<!--<form id="dropdown" class="d-flex flex-row-reverse">-->
-			<!--	<botton type="button" class="bg-blue-500 text-white rounded px-2 my-3 mx-2 w-auto d-flex align-items-center" onclick="sort()">並べ替え</botton>-->
-			<!--	<select class="form-select w-auto my-3" aria-label="Default select example" name="sort">-->
-			<!--		<option selected>▼並べ替え</option>-->
-			<!--		<option value="new">新着順</option>-->
-			<!--		<option value="old">古い順</option>-->
-			<!--		<option value="favorite">気になる!が多い順</option>-->
-			<!--	</select>-->
-			<!--</form>-->
+			<form id="dropdown" class="d-flex flex-row-reverse">
+				<botton type="button" class="bg-blue-500 text-white rounded px-2 my-3 mx-2 w-auto d-flex align-items-center" onclick="sort()">並べ替え</botton>
+				<select class="form-select w-auto my-3" aria-label="Default select example" name="sort">
+					<option selected>▼並べ替え</option>
+					<option value="new">新着順</option>
+					<option value="old">古い順</option>
+					<!--<option value="favorite">気になる!が多い順</option>-->
+				</select>
+			</form>
 			@foreach ($questions as $question)
 				<div class="questions container text-center border border-dark border-2 rounded-3 mb-3">
 					<div class='question'>

@@ -43,15 +43,15 @@ class QuestionController extends Controller
         }
             
         //並べ替え機能
-        // $select = $request->sort;
+        $select = $request->sort;
         
-        // if($select == 'old'){
-        //     $questions = $query->orderBy('created_at', 'desc')->get();
-        // } elseif($select == 'new') {
-        //     $questions = $query->orderBy('created_at', 'desc')->get();
-        // } else {
-        //     $questions = $query->get();
-        // }
+        if($select == 'old'){
+            $questions = $query->orderBy('created_at', 'asc')->get();
+        } elseif($select == 'new') {
+            $questions = $query->orderBy('created_at', 'desc')->get();
+        } else {
+            $questions = $query->get();
+        }
         
         $questions = $query->get();
 
@@ -124,12 +124,25 @@ class QuestionController extends Controller
         $question->delete();
         return back();
     }
-    public function myPostedQuestions(Question $question, User $user)
+    public function myPostedQuestions(Question $question, User $user, Request $request)
     {
         $user_id = Auth::user()->id;
-
+        
+        //並べ替え機能
+        // $select = $request->sort;
+        
+        // if($select == 'old'){
+        //     $question->whereHas('users', function ($question) use ($user_id) { $question->where('user_id', $user_id); })->orderBy('created_at', 'asc');
+        // } elseif($select == 'new') {
+        //     $question->whereHas('users', function ($question) use ($user_id) { $question->where('user_id', $user_id); })->orderBy('created_at', 'desc');
+        // } else {
+        //     $question->all()->whereHas('users', function ($question) use ($user_id) { $question->where('user_id', $user_id); });
+        // }
+        
+        // return view('questions/my_posted_questions')->with(['user_questions' => $question->get()]);
+        
         return view('questions/my_posted_questions')->with(['user_questions' => $question->whereHas('users', function ($question) use ($user_id) {
             $question->where('user_id', $user_id);
-        })->get()]);
+        })->orderBy('created_at', 'desc')->get()]);
     }
 }
