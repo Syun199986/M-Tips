@@ -76,7 +76,7 @@
 				<div class="answers container text-center border border-dark border-2 rounded-3 mb-3">
 					<div class='answer'>
 						<div class="d-flex justify-content-between">
-							<h3 class="row align-items-start">{{ $answer->user_name }} さんの回答</h2>
+							<h3 class="row align-items-start">{{ $answer->user_name }} の回答</h2>
 							@foreach($answer->users as $user)
 								@if (Auth::user()->id == $user->id)
 									<div class="d-flex justify-content-between align-items-center">
