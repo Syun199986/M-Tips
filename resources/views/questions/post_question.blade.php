@@ -42,16 +42,6 @@
 								</form>
 							</li>
 						</ul>
-						<select class="form-select w-auto" aria-label="Default select example">
-							<option selected>▼カテゴリ選択</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-						</select>
-						<form class="d-flex">
-							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-							<button class="btn btn-outline-success" type="submit">Search</button>
-						</form>
 					</div>
 				</div>
 			</nav>
@@ -70,7 +60,7 @@
 	            <!--				<option value="2">2</option>-->
 	            <!--				<option value="3">3</option>-->
 	    				    <!--</select>-->
-		      				<input type="text" name="question[category_id]" class="" placeholder="テスト用カテゴリーIDを入力" value="{{ old('question.category_id') }}"/>
+		      				<!--<input type="text" name="question[category_id]" class="" placeholder="テスト用カテゴリーIDを入力" value="{{ old('question.category_id') }}"/>-->
 	                    </div>
 	                    <p class="title__error" style="color:red">{{ $errors->first('question.title') }}</p>
 		                <p class="title__error" style="color:red">{{ $errors->first('question.category_id') }}</p>

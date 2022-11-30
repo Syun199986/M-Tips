@@ -19,9 +19,10 @@ return new class extends Migration
             $table->string('user_name', 255);
             $table->text('body');
             $table->string('file_path', 150)->nullable();
+            $table->unsignedInteger('answers_num')->nullable();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreignId('category_id')->constrained();
+            $table->foreignId('category_id')->nullable()->constrained();
         });
     }
 

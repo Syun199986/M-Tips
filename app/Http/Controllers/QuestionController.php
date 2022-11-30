@@ -10,12 +10,54 @@ use App\Models\User;
 use App\Http\Requests\QuestionPostRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class QuestionController extends Controller
 {
-    public function home(Question $question)
+    public function home(Question $question, Answer $answer, Request $request)
     {
-        return view('questions/home')->with(['questions' => $question->get()]);
+        //検索機能
+        $range = $request->range;
+        $keyword = $request->input('keyword');
+        $query = Question::query();
+        
+        if(!empty($keyword)) {
+            
+            if($range == 'all') {
+            $query->where('title', 'LIKE', "%{$keyword}%")
+                ->orWhere('body', 'LIKE', "%{$keyword}%")
+                ->orWhere('user_name', 'LIKE', "%{$keyword}%");
+            } elseif ($range == 'title') {
+                $query->where('title', 'LIKE', "%{$keyword}%");
+            } elseif ($range == 'body') {
+                $query->where('body', 'LIKE', "%{$keyword}%");
+            } elseif ($range == 'user_name') {
+                $query->where('user_name', 'LIKE', "%{$keyword}%");
+            } else {
+                $query->where('title', 'LIKE', "%{$keyword}%")
+                ->orWhere('body', 'LIKE', "%{$keyword}%")
+                ->orWhere('user_name', 'LIKE', "%{$keyword}%");
+            }
+            
+        }
+            
+        //並べ替え機能
+        $select = $request->sort;
+        
+        if($select == 'old'){
+            $questions = $query->orderBy('created_at', 'asc')->get();
+        } elseif($select == 'new') {
+            $questions = $query->orderBy('created_at', 'desc')->get();
+        } else {
+            $questions = $query->get();
+        }
+        
+        $questions = $query->get();
+
+        return view('questions/home', compact('questions', 'answer', 'keyword'));
+        
+        // return view('questions/home')->with(['questions' => $question->order($request->sort)])->with(['answer' => $answer])->with(['keyword' => $keyword]);
     }
     public function postQuestion(Question $question)
     {
@@ -82,12 +124,25 @@ class QuestionController extends Controller
         $question->delete();
         return back();
     }
-    public function myPostedQuestions(Question $question, User $user)
+    public function myPostedQuestions(Question $question, User $user, Request $request)
     {
         $user_id = Auth::user()->id;
-
+        
+        //並べ替え機能
+        // $select = $request->sort;
+        
+        // if($select == 'old'){
+        //     $question->whereHas('users', function ($question) use ($user_id) { $question->where('user_id', $user_id); })->orderBy('created_at', 'asc');
+        // } elseif($select == 'new') {
+        //     $question->whereHas('users', function ($question) use ($user_id) { $question->where('user_id', $user_id); })->orderBy('created_at', 'desc');
+        // } else {
+        //     $question->all()->whereHas('users', function ($question) use ($user_id) { $question->where('user_id', $user_id); });
+        // }
+        
+        // return view('questions/my_posted_questions')->with(['user_questions' => $question->get()]);
+        
         return view('questions/my_posted_questions')->with(['user_questions' => $question->whereHas('users', function ($question) use ($user_id) {
             $question->where('user_id', $user_id);
-        })->get()]);
+        })->orderBy('created_at', 'desc')->get()]);
     }
 }
