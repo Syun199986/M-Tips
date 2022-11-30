@@ -119,7 +119,7 @@
 						@endif						
 						<div class="d-flex justify-content-between">
 							<div>
-								<button type="button" class="bg-yellow-500 text-white rounded px-2 py-1 mb-2">★気になる！</button>
+								<!--<button type="button" class="bg-yellow-500 text-white rounded px-2 py-1 mb-2">★気になる！</button>-->
 								<div>
 									<a href="/{{ $question->id }}/all_answers">回答を見る(回答数：{{ $answer->where('question_id', $question->id)->count() }})</a>
 									<!--<a href="/{{ $question->id }}/all_answers">回答を見る(回答数：{{ $question->answers_num }})</a>-->

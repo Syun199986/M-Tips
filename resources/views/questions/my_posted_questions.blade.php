@@ -95,7 +95,7 @@
 					@endif						
 					<div class="d-flex justify-content-between">
 						<div>
-							<button type="button" class="bg-yellow-500 text-white rounded px-2 py-1 mb-2">★気になる数</button>
+							<!--<button type="button" class="bg-yellow-500 text-white rounded px-2 py-1 mb-2">★気になる数</button>-->
 							<div>
 								<a href="/{{ $question->id }}/all_answers">回答を見る</a>
 							</div>
