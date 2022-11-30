@@ -42,16 +42,16 @@
 								</form>
 							</li>
 						</ul>
-						<select class="form-select w-auto" aria-label="Default select example">
-							<option selected>▼カテゴリ選択</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-						</select>
-						<form class="d-flex">
-							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-							<button class="btn btn-outline-success" type="submit">Search</button>
-						</form>
+						<!--<select class="form-select w-auto" aria-label="Default select example">-->
+						<!--	<option selected>▼カテゴリ選択</option>-->
+						<!--	<option value="1">1</option>-->
+						<!--	<option value="2">2</option>-->
+						<!--	<option value="3">3</option>-->
+						<!--</select>-->
+						<!--<form class="d-flex">-->
+						<!--	<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+						<!--	<button class="btn btn-outline-success" type="submit">Search</button>-->
+						<!--</form>-->
 					</div>
 				</div>
 			</nav>
@@ -66,28 +66,31 @@
 						<a class="nav-link active" href="/my_posted_answers">投稿した回答</a>
 					</li>
 				</ul>
-				<select class="form-select w-auto mx-2" aria-label="Default select example">
-					<option selected>▼並べ替え</option>
-					<option value="1">新着順</option>
-					<option value="2">気になる!が多い順</option>
-					<option value="3">回答数順</option>
-				</select>
+				<!--<select class="form-select w-auto mx-2" aria-label="Default select example">-->
+				<!--	<option selected>▼並べ替え</option>-->
+				<!--	<option value="1">新着順</option>-->
+				<!--	<option value="2">気になる!が多い順</option>-->
+				<!--	<option value="3">回答数順</option>-->
+				<!--</select>-->
 			</div>
 			@foreach ($user_answers as $answer)
 				<div class="answers container text-center border border-dark border-2 rounded-3 mb-3">
 					<div class='answer'>
 						<div class="d-flex justify-content-between">
+							<h3 class="row align-items-start">{{ $answer->user_name }} さんの回答</h2>
+							<div class="d-flex justify-content-between align-items-center">
+									<a href="/answers/{{ $answer->id }}/edit_answer">回答の編集</a>
+							</div>
+						</div>
+						<div class="d-flex justify-content-between">
 							<p class="row align-items-start">{{ $answer->created_at }}</p>
-						</div>
-						<div class="d-flex justify-content-between">
-							<a href="/answers/{{ $answer->id }}/edit_answer">回答の編集</a>
-						</div>
-						<div class="d-flex justify-content-between">
-							<form action="/answers/{{ $answer->id }}" id="form_{{ $answer->id }}" method="post">
-								@csrf
-								@method('DELETE')
-								<a href="#" onclick="deleteAnswer({{ $answer->id }})" style="color:red">回答の削除</a>
-							</form>
+							<div class="d-flex justify-content-between">
+								<form action="/answers/{{ $answer->id }}" id="form_{{ $answer->id }}" method="post">
+									@csrf
+									@method('DELETE')
+									<a href="#" onclick="deleteAnswer({{ $answer->id }})" style="color:red">回答の削除</a>
+								</form>
+							</div>
 						</div>
 						<p class='body row align-items-start'>{{ $answer->body }}</p>
 						@if(strrpos($answer->file_path, '.png'))
@@ -101,7 +104,7 @@
 						@endif						
 						<div class="d-flex justify-content-between">
 							<div>
-								<button type="button" class="">★いいね数</button>
+								<!--<button type="button" class="">★いいね！</button>-->
 							</div>
 						</div>
 					</div>

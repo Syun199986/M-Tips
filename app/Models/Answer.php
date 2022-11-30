@@ -17,6 +17,16 @@ class Answer extends Model
         'user_name'
     ];
     
+    public function order($select)
+    {
+        if($select == 'old'){
+            return $this->orderBy('created_at', 'asc')->get();
+        } elseif($select == 'new') {
+            return $this->orderBy('created_at', 'desc')->get();
+        } else {
+            return $this->all();
+        }    
+    }
     public function users()
     {
         return $this->belongsToMany(User::class);

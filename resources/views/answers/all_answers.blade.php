@@ -1,3 +1,4 @@
+<x-guest-layout>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -42,50 +43,62 @@
 								</form>
 							</li>
 						</ul>
-						<select class="form-select w-auto" aria-label="Default select example">
-							<option selected>▼カテゴリ選択</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-						</select>
-						<form class="d-flex">
-							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-							<button class="btn btn-outline-success" type="submit">Search</button>
-						</form>
+						<!--<form class="d-flex" action="/{{ $question->id }}/all_answers" method="GET">-->
+						<!--	@csrf-->
+						<!--	<select class="form-select w-auto" aria-label="Default select example" name="range">-->
+						<!--		<option selected>▼検索範囲</option>-->
+						<!--		<option value="all">全て</option>-->
+						<!--		<option value="body">本文</option>-->
+						<!--		<option value="user_name">ユーザー名</option>-->
+						<!--	</select>-->
+						<!--	<input class="form-control" type="text" placeholder="検索ワードを入力" aria-label="Search" name="keyword" value="{{ $keyword }}">-->
+						<!--	<input class="btn btn-outline-success mx-2" type="submit" value="検索">-->
+						<!--	<button>-->
+						<!--		<a href="/{{ $question->id }}/all_answers" class="btn btn-outline-success">Clear</a>-->
+						<!--	</button>-->
+						<!--</form>-->
 					</div>
 				</div>
 			</nav>
 		</header>
 		<main>
-			<div class="d-flex flex-row-reverse">
-				<select class="form-select w-auto mx-2" aria-label="Default select example">
-					<option selected>▼並べ替え</option>
-					<option value="1">新着順</option>
-					<option value="2">気になる!が多い順</option>
-					<option value="3">回答数順</option>
-				</select>
-			</div>
+			<a class="d-flex flex-row-reverse my-3 mr-5" href="/">ホームに戻る</a>
+			<!--<form id="dropdown" class="d-flex flex-row-reverse">-->
+			<!--	<botton type="button" class="bg-blue-500 text-white rounded px-2 my-3 mx-2 w-auto d-flex align-items-center" onclick="sort()">並べ替え</botton>-->
+			<!--	<select class="form-select w-auto my-3" aria-label="Default select example" name="sort">-->
+			<!--		<option selected>▼並べ替え</option>-->
+			<!--		<option value="new">新着順</option>-->
+			<!--		<option value="old">古い順</option>-->
+			<!--		<option value="favorite">気になる!が多い順</option>-->
+			<!--	</select>-->
+			<!--</form>-->
 			@foreach ($answers as $answer)
 				<div class="answers container text-center border border-dark border-2 rounded-3 mb-3">
 					<div class='answer'>
-						<p class="row align-items-start">回答ユーザー：{{ $answer->user_name }}</p>
+						<div class="d-flex justify-content-between">
+							<h3 class="row align-items-start">{{ $answer->user_name }} さんの回答</h2>
+							@foreach($answer->users as $user)
+								@if (Auth::user()->id == $user->id)
+									<div class="d-flex justify-content-between align-items-center">
+											<a href="/answers/{{ $answer->id }}/edit_answer">回答の編集</a>
+									</div>
+					  			@endif
+				  			@endforeach
+						</div>
 						<div class="d-flex justify-content-between">
 							<p class="row align-items-start">{{ $answer->created_at }}</p>
+							@foreach($answer->users as $user)
+								@if (Auth::user()->id == $user->id)
+									<div class="d-flex justify-content-between">
+										<form action="/answers/{{ $answer->id }}" id="form_{{ $answer->id }}" method="post">
+											@csrf
+											@method('DELETE')
+											<a href="#" onclick="deleteAnswer({{ $answer->id }})" style="color:red">回答の削除</a>
+										</form>
+									</div>
+					  			@endif
+				  			@endforeach
 						</div>
-						@foreach($answer->users as $user)
-							@if (Auth::user()->id == $user->id)
-								<div class="d-flex justify-content-between">
-										<a href="/answers/{{ $answer->id }}/edit_answer">回答の編集</a>
-								</div>
-								<div class="d-flex justify-content-between">
-									<form action="/answers/{{ $answer->id }}" id="form_{{ $answer->id }}" method="post">
-										@csrf
-										@method('DELETE')
-										<a href="#" onclick="deleteAnswer({{ $answer->id }})" style="color:red">回答の削除</a>
-									</form>
-								</div>
-				  			@endif
-			  			@endforeach
 						<p class='body row align-items-start'>{{ $answer->body }}</p>
 						@if(strrpos($answer->file_path, '.png'))
 						    <img src="{{ $answer->file_path }}">
@@ -98,7 +111,7 @@
 						@endif						
 						<div class="d-flex justify-content-between">
 							<div>
-								<button type="button" class="">★いいね！</button>
+								<!--<button type="button" class="">★いいね！</button>-->
 							</div>
 						</div>
 					</div>
@@ -114,5 +127,11 @@
 				document.getElementById(`form_${id}`).submit();
 			}
 		}
+		function sort() {
+			'use strict'
+			
+			document.getElementById("dropdown").submit();
+		}
 	</script>
 </html>
+</x-guest-layout>

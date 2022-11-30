@@ -13,9 +13,34 @@ use Illuminate\Support\Facades\Auth;
 
 class AnswerController extends Controller
 {
-    public function allAnswers(Answer $answer, Question $question)
+    public function allAnswers(Answer $answer, Question $question, Request $request)
     {
-        return view('answers/all_answers')->with(['answers' => $answer->where('question_id', $question->id)->get()])->with(['question' => $question]);
+        //検索機能
+        $range = $request->range;
+        $keyword = $request->input('keyword');
+        $query = Answer::query();
+        
+        if(!empty($keyword)) {
+            
+            if($range == 'all') {
+            $query->where('body', 'LIKE', "%{$keyword}%")
+                ->orWhere('user_name', 'LIKE', "%{$keyword}%");
+            } elseif ($range == 'body') {
+                $query->where('body', 'LIKE', "%{$keyword}%");
+            } elseif ($range == 'user_name') {
+                $query->where('user_name', 'LIKE', "%{$keyword}%");
+            } else {
+                $query->where('body', 'LIKE', "%{$keyword}%")
+                ->orWhere('user_name', 'LIKE', "%{$keyword}%");
+            }
+            
+        }
+        
+        $answers = $query->where('question_id', $question->id)->get();
+        
+        return view('answers/all_answers', compact('answers', 'question', 'keyword'));
+        
+        // return view('answers/all_answers')->with(['answers' => $answer->where('question_id', $question->id)->get()])->with(['question' => $question]);
     }
     public function postAnswer(Answer $answer, Question $question)
     {
