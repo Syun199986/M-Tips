@@ -70,7 +70,7 @@
 	            <!--				<option value="2">2</option>-->
 	            <!--				<option value="3">3</option>-->
 	    				    <!--</select>-->
-		      				<input type="text" name="question[category_id]" class="" placeholder="テスト用カテゴリーIDを入力" value="{{ old('question.category_id') }}"/>
+		      				<!--<input type="text" name="question[category_id]" class="" placeholder="テスト用カテゴリーIDを入力" value="{{ old('question.category_id') }}"/>-->
 	                    </div>
 	                    <p class="title__error" style="color:red">{{ $errors->first('question.title') }}</p>
 		                <p class="title__error" style="color:red">{{ $errors->first('question.category_id') }}</p>

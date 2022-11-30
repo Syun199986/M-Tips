@@ -14,8 +14,8 @@ class Question extends Model
     protected $fillable = [
         'title',
         'body',
-        'category_id',
-        'user_name'
+        // 'category_id',
+        'user_name',
     ];
     
     public function order($select)

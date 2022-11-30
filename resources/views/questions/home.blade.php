@@ -12,7 +12,7 @@
 	</head>
 
 	<body>
-		<header>
+		<header class="mb-5">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="container-fluid">
 					<a class="navbar-brand" href="/">M-Tips</a>
@@ -49,37 +49,41 @@
 								</li>
 							@endauth
 						</ul>
-						<select class="form-select w-auto" aria-label="Default select example">
-							<option selected>▼カテゴリ選択</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-						</select>
-						<form class="d-flex">
-							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-							<button class="btn btn-outline-success" type="submit">Search</button>
+						<form class="d-flex" action="/" method="GET">
+							@csrf
+							<select class="form-select w-auto" aria-label="Default select example" name="range">
+								<option selected>▼検索範囲</option>
+								<option value="all">全て</option>
+								<option value="title">タイトル</option>
+								<option value="body">本文</option>
+								<option value="user_name">ユーザー名</option>
+							</select>
+							<input class="form-control" type="text" placeholder="検索ワードを入力" aria-label="Search" name="keyword" value="{{ $keyword }}">
+							<input class="btn btn-outline-success mx-2" type="submit" value="検索">
+							<button>
+								<a href="/" class="btn btn-outline-success">Clear</a>
+							</button>
 						</form>
 					</div>
 				</div>
 			</nav>
 		</header>
 		<main>
-			<form id="dropdown" class="d-flex flex-row-reverse">
-				<botton type="button" class="bg-blue-500 text-white rounded px-2 my-3 mx-2 w-auto d-flex align-items-center" onclick="sort()">並べ替え</botton>
-				<select class="form-select w-auto mx-2 my-3" aria-label="Default select example" name="sort">
-					<option selected>▼並べ替え</option>
-					<option value="new">新着順</option>
-					<option value="old">古い順</option>
-					<!--<option value="3">気になる!が多い順</option>-->
-				</select>
-			</form>
+			<!--<form id="dropdown" class="d-flex flex-row-reverse">-->
+			<!--	<botton type="button" class="bg-blue-500 text-white rounded px-2 my-3 mx-2 w-auto d-flex align-items-center" onclick="sort()">並べ替え</botton>-->
+			<!--	<select class="form-select w-auto my-3" aria-label="Default select example" name="sort">-->
+			<!--		<option selected>▼並べ替え</option>-->
+			<!--		<option value="new">新着順</option>-->
+			<!--		<option value="old">古い順</option>-->
+			<!--		<option value="favorite">気になる!が多い順</option>-->
+			<!--	</select>-->
+			<!--</form>-->
 			@foreach ($questions as $question)
 				<div class="questions container text-center border border-dark border-2 rounded-3 mb-3">
 					<div class='question'>
 						<h2 class='title row align-items-start'>{{ $question->title }}</h2>
-						<p class="row align-items-start">質問ユーザー：{{ $question->user_name }}</p>
 						<div class="d-flex justify-content-between">
-							<p class="row align-items-start">{{ $question->created_at }}</p>
+							<p class="row align-items-start">質問ユーザー：{{ $question->user_name }}</p>
 							@auth
 								@foreach($question->users as $user)
 									@if (Auth::user()->id == $user->id)
@@ -89,7 +93,7 @@
 			  				@endauth
 						</div>
 						<div class="d-flex justify-content-between">
-							<p class="row align-items-start">音楽カテゴリ：{{ $question->category_id }}</p>
+							<p class="row align-items-start">{{ $question->created_at }}</p>
 							@auth
 								@foreach($question->users as $user)
 									@if (Auth::user()->id == $user->id)
@@ -102,6 +106,7 @@
 				  				@endforeach
 			  				@endauth
 						</div>
+						<!--<p class="row align-items-start">音楽カテゴリ：{{ $question->category_id }}</p>-->
 						<p class='body row align-items-start'>{{ $question->body }}</p>
 						@if(strrpos($question->file_path, '.png'))
 						    <img src="{{ $question->file_path }}">
