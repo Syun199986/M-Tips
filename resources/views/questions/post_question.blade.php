@@ -74,7 +74,7 @@
 	                </div>
 	                <div class="d-flex justify-content-between">
 						<input class="form-control form-control" id="question_file" name="question_file" type="file">
-	      				<input type="submit" value="Give Tips!" class="btn btn-warning ml-5"/>
+	      				<input type="submit" value="投稿する" class="btn btn-primary ml-5"/>
 					</div>
 		      		<input type="hidden" name="question[user_name]" value="{{ Auth::user()->name }}"/>
 		      		<input type="hidden" name="user_id" value="{{ Auth::user()->id }}"/>
