@@ -1,3 +1,4 @@
+<x-guest-layout>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -8,11 +9,12 @@
 		<link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
 			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 	</head>
 
-	<body>
+	<body class="bg-light">
 		<header>
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<nav class="navbar navbar-expand-lg navbar-light bg-white">
 				<div class="container-fluid">
 					<a class="navbar-brand" href="/">M-Tips</a>
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -47,7 +49,7 @@
 			</nav>
 		</header>
 		<main>
-			<div class="post_question container border border-dark border-2 rounded-3 my-3" id="question_form">
+			<div class="post_question container border-gray-300 border-1 rounded-3 mt-5 px-4 py-2 bg-white" id="question_form">
 				<form action="/" method="POST" enctype="multipart/form-data">
 				@csrf
 	                <div class="mb-3">
@@ -71,14 +73,14 @@
 	                    <p class="title__error" style="color:red">{{ $errors->first('question.body') }}</p>
 	                </div>
 	                <div class="d-flex justify-content-between">
-	      				<input type="file" name="question_file" class="" id="question_file"/>
-	      				<input type="submit" value="投稿する" class=""/>
+						<input class="form-control form-control" id="question_file" name="question_file" type="file">
+	      				<input type="submit" value="Give Tips!" class="btn btn-warning ml-5"/>
 					</div>
 		      		<input type="hidden" name="question[user_name]" value="{{ Auth::user()->name }}"/>
 		      		<input type="hidden" name="user_id" value="{{ Auth::user()->id }}"/>
 		      		<input type="hidden" name="question_id" value="{{ $question->id }}"/>
 				</form>
-				<input type="button" id="file_clear" value="ファイル選択解除" onclick="fileClear();"/>
+				<input class="btn btn-outline-danger btn-sm mt-2" type="button" id="file_clear" value="ファイル選択解除" onclick="fileClear();"/>
 			</div>
 		</main>
 	</body>
@@ -89,3 +91,4 @@
 		}
 	</script>
 </html>
+</x-guest-layout>
