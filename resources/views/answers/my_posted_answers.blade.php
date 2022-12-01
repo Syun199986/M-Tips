@@ -55,7 +55,7 @@
 						<a class="nav-link" aria-current="page" href="/my_posted_questions">投稿した質問</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link active" href="/my_posted_answers">投稿した回答</a>
+						<a class="nav-link active" href="/my_posted_answers">投稿したTips</a>
 					</li>
 				</ul>
 				<!--<form id="dropdown" class="d-flex flex-row-reverse">-->

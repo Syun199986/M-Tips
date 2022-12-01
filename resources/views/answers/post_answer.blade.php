@@ -75,13 +75,13 @@
 				<form action="/{{ $question->id }}/all_answers/store" method="POST" enctype="multipart/form-data">
 				@csrf
 	                <div class="mb-3">
-	                    <h2 class="form-label">回答文</h2>
-	                    <textarea class="form-control" name="answer[body]" rows="3">{{ $answer->body }}</textarea>
+	                    <h2 class="form-label">Tipsの投稿</h2>
+	                    <textarea class="form-control" name="answer[body]" placeholder="Tipsを入力" rows="3">{{ $answer->body }}</textarea>
 	                </div>
 						@if($answer->file_path == NULL)
 			                <div class="d-flex justify-content-between">
 								<input class="form-control form-control" id="answer_file" name="answer_file" type="file">
-			      				<input type="submit" value="編集を完了" class="btn btn-primary ml-5"/>
+			      				<input type="submit" value="Give Tips!" class="btn btn-warning ml-5"/>
 							</div>
 							<input class="btn btn-outline-danger btn-sm mt-2" type="button" id="file_clear" value="ファイル選択解除" onclick="fileClear();"/>
 						@else
@@ -89,7 +89,7 @@
 							<button class="btn btn-outline-danger btn-sm" type="submit" formaction="/answers/{{ $answer->id }}/delete_file" id="delete_file">
 								ファイルを削除
 							</button>								
-		     				<input type="submit" value="編集を完了" class="btn btn-primary ml-5"/>
+		     				<input type="submit" value="Give Tips!" class="btn btn-warning ml-5"/>
 						</div>
 						<div class="my-3">
 							@if(strrpos($answer->file_path, '.png'))

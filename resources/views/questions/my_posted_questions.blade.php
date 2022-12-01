@@ -55,7 +55,7 @@
 						<a class="nav-link active" aria-current="page" href="/my_posted_questions">投稿した質問</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/my_posted_answers">投稿した回答</a>
+						<a class="nav-link" href="/my_posted_answers">投稿したTips</a>
 					</li>
 				</ul>
 				<!--<form id="dropdown" class="d-flex flex-row-reverse">-->
@@ -118,7 +118,7 @@
 							<div>
 								<!--<button type="button" class="bg-yellow-500 text-white rounded px-2 py-1 mb-2">★気になる！</button>-->
 								<div>
-									<a href="/{{ $question->id }}/all_answers" class="btn btn-primary btn-sm">回答を見る(回答数：{{ $answer->where('question_id', $question->id)->count() }})</a>
+									<a href="/{{ $question->id }}/all_answers" class="btn btn-primary btn-sm">Tipsを見る(Tips：{{ $answer->where('question_id', $question->id)->count() }})</a>
 									<!--<a href="/{{ $question->id }}/all_answers">回答を見る(回答数：{{ $question->answers_num }})</a>-->
 								</div>
 							</div>
