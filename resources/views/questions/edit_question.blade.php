@@ -68,7 +68,7 @@
 								<input class="form-control form-control" id="question_file" name="question_file" type="file">
 			      				<input type="submit" value="編集を完了" class="btn btn-primary ml-5"/>
 							</div>
-								<input class="btn btn-outline-danger btn-sm mt-2" type="button" id="file_clear" value="ファイル選択解除" onclick="fileClear();"/>
+							<input class="btn btn-outline-danger btn-sm mt-2" type="button" id="file_clear" value="ファイル選択解除" onclick="fileClear();"/>
 						@else
 		                	<div class="d-flex justify-content-between">
 								<button class="btn btn-outline-danger btn-sm" type="submit" formaction="/questions/{{ $question->id }}/delete_file" id="delete_file">
@@ -88,8 +88,8 @@
 								@endif
 							</div>
 						@endif
-					</div>
-                </form>
+                	</form>
+				</div>
 			</div>
 		</main>
 	</body>
