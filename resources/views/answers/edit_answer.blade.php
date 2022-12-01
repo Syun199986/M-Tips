@@ -75,8 +75,8 @@
 				@csrf
 				@method("PUT")
 	                <div class="mb-3">
-	                    <h2 class="form-label">回答文</h2>
-	                    <textarea class="form-control" name="answer[body]" rows="3">{{ $answer->body }}</textarea>
+	                    <h2 class="form-label">Tipsの編集</h2>
+	                    <textarea class="form-control" name="answer[body]" placeholder="Tipsを入力" rows="3">{{ $answer->body }}</textarea>
 	                </div>
 						@if($answer->file_path == NULL)
 			                <div class="d-flex justify-content-between">

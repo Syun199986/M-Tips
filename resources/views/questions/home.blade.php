@@ -50,6 +50,9 @@
 								</li>
 							@endauth
 						</ul>
+						@auth
+							<div class="d-flex align-items-center mr-3" style="opacity: 0.7;">{{ Auth::user()->name }} さん</div>
+						@endauth
 						<form class="d-flex" action="/" method="GET">
 							@csrf
 							<select class="form-select w-auto" aria-label="Default select example" name="range">
@@ -129,7 +132,7 @@
 							<div>
 								<!--<button type="button" class="bg-yellow-500 text-white rounded px-2 py-1 mb-2">★気になる！</button>-->
 								<div>
-									<a href="/{{ $question->id }}/all_answers" class="btn btn-primary btn-sm">回答を見る(回答数：{{ $answer->where('question_id', $question->id)->count() }})</a>
+									<a href="/{{ $question->id }}/all_answers" class="btn btn-primary btn-sm">Tipsを見る(Tips：{{ $answer->where('question_id', $question->id)->count() }})</a>
 									<!--<a href="/{{ $question->id }}/all_answers">回答を見る(回答数：{{ $question->answers_num }})</a>-->
 								</div>
 							</div>
