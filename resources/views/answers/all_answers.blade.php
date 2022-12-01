@@ -83,36 +83,7 @@
 			@foreach ($answers as $answer)
 				<div class="answers container text-center border-gray-300 border-1 rounded-3 mb-3 px-4 py-2 bg-white">
 					<div class='answer'>
-						
-						
-						<!--<div class="d-flex justify-content-between">-->
-						<!--	<h3 class="row align-items-start">{{ $answer->user_name }} の回答</h2>-->
-						<!--	@foreach($answer->users as $user)-->
-						<!--		@if (Auth::user()->id == $user->id)-->
-						<!--			<div class="d-flex justify-content-between align-items-center">-->
-						<!--					<a href="/answers/{{ $answer->id }}/edit_answer">回答の編集</a>-->
-						<!--			</div>-->
-					 <!-- 			@endif-->
-				  <!--			@endforeach-->
-						<!--</div>-->
-						<!--<div class="d-flex justify-content-between">-->
-						<!--	<p class="row align-items-start">{{ $answer->created_at }}</p>-->
-						<!--	@foreach($answer->users as $user)-->
-						<!--		@if (Auth::user()->id == $user->id)-->
-						<!--			<div class="d-flex justify-content-between">-->
-						<!--				<form action="/answers/{{ $answer->id }}" id="form_{{ $answer->id }}" method="post">-->
-						<!--					@csrf-->
-						<!--					@method('DELETE')-->
-						<!--					<a href="#" onclick="deleteAnswer({{ $answer->id }})" style="color:red">回答の削除</a>-->
-						<!--				</form>-->
-						<!--			</div>-->
-					 <!-- 			@endif-->
-				  <!--			@endforeach-->
-						<!--</div>-->
-						
-						
 						<div class="d-flex justify-content-between">
-							<!--<h3 class='title row align-items-start mb-0'>{{ $answer->user_name }} の回答</h3>-->
 							<div>
 								<p class="row align-items-start mb-0" style="font-size: 15px; opacity: 0.7;">質問ユーザー：{{ $answer->user_name }}</p>
 								<p class="row align-items-start" style="font-size: 15px; opacity: 0.7;">投稿日時：{{ $answer->created_at }}</p>
