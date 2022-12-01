@@ -25,7 +25,7 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="/">ホーム</a>
+								<a class="nav-link" aria-current="page" href="/">ホーム</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" aria-current="page" href="/post_question">質問投稿</a>
@@ -70,7 +70,11 @@
 			</nav>
 		</header>
 		<main>
-			<a class="d-flex flex-row-reverse my-3 mr-5" href="/">ホームに戻る</a>
+			<div class="d-flex flex-row-reverse">
+				<button class="rounded px-2 my-3 mx-2 w-auto d-flex align-items-center">
+					<a href="/" class="btn btn-primary btn-sm">ホームに戻る</a>
+				</button>
+			</div>
 			<!--<form id="dropdown" class="d-flex flex-row-reverse">-->
 			<!--	<botton type="button" class="bg-blue-500 text-white rounded px-2 my-3 mx-2 w-auto d-flex align-items-center" onclick="sort()">並べ替え</botton>-->
 			<!--	<select class="form-select w-auto my-3" aria-label="Default select example" name="sort">-->
