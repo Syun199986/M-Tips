@@ -124,7 +124,7 @@ class QuestionController extends Controller
         $question->delete();
         return back();
     }
-    public function myPostedQuestions(Question $question, User $user, Request $request)
+    public function myPostedQuestions(Question $question, Answer $answer, User $user, Request $request)
     {
         $user_id = Auth::user()->id;
         
@@ -143,6 +143,6 @@ class QuestionController extends Controller
         
         return view('questions/my_posted_questions')->with(['user_questions' => $question->whereHas('users', function ($question) use ($user_id) {
             $question->where('user_id', $user_id);
-        })->orderBy('created_at', 'desc')->get()]);
+        })->orderBy('created_at', 'desc')->get()])->with(['answer' => $answer]);
     }
 }
