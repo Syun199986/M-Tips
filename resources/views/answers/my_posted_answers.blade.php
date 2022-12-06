@@ -69,7 +69,7 @@
 				<!--</form>-->
 			</div>
 			@foreach ($user_answers as $answer)
-				<div class="answers container text-center border-gray-300 border-1 rounded-3 mb-3 px-4 py-2 bg-white">
+				<div class="answers container text-center border-gray-300 border-1 rounded-3 mt-3 px-4 py-2 bg-white">
 					<div class='answer'>
 						<div class="d-flex justify-content-between">
 							<div>

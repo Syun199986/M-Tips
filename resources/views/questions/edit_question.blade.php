@@ -65,9 +65,10 @@
 	                </div>
 						@if($question->file_path == NULL)
 			                <div class="d-flex justify-content-between">
-								<input class="form-control form-control" id="question_file" name="question_file" type="file">
+								<input class="form-control form-control" id="question_file" name="question_file" type="file" accept="image/*,.aac,.m4a,.mp1,.mp2,.mp3,.mpg,.mpeg,.oga,.ogg,.wav,.wabm">
 			      				<input type="submit" value="編集を完了" class="btn btn-primary ml-5"/>
 							</div>
+							<p class="mb-0" style="font-size: 15px; opacity: 0.7;">画像、音声ファイルを選択</p>
 							<input class="btn btn-outline-danger btn-sm mt-2" type="button" id="file_clear" value="ファイル選択解除" onclick="fileClear();"/>
 						@else
 		                	<div class="d-flex justify-content-between">
@@ -77,9 +78,28 @@
 			      				<input type="submit" value="編集を完了" class="btn btn-primary ml-5"/>
 							</div>
 							<div class="my-3">
-								@if(strrpos($question->file_path, '.png'))
+								@if(
+									strrpos($question->file_path, '.gif')
+									|| strrpos($question->file_path, '.jpeg')
+									|| strrpos($question->file_path, '.jpg')
+									|| strrpos($question->file_path, '.png')
+									|| strrpos($question->file_path, '.bmp')
+									|| strrpos($question->file_path, '.svg')
+									)
 								    <img src="{{ $question->file_path }}">
-								@elseif(strrpos($question->file_path, '.mp3'))
+								@elseif(
+									strrpos($question->file_path, '.aac')
+									|| strrpos($question->file_path, '.m4a')
+									|| strrpos($question->file_path, '.mp1')
+									|| strrpos($question->file_path, '.mp2')
+									|| strrpos($question->file_path, '.mp3')
+									|| strrpos($question->file_path, '.mpg')
+									|| strrpos($question->file_path, '.mpeg')
+									|| strrpos($question->file_path, '.oga')
+									|| strrpos($question->file_path, '.ogg')
+									|| strrpos($question->file_path, '.wav')
+									|| strrpos($question->file_path, '.wabm')
+										)
 									<audio controls src="{{ $question->file_path }}">
 							            <a href="{{ $question->file_path }}">
 							            	Download audio

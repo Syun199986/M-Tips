@@ -73,13 +73,14 @@
 	                    <p class="title__error" style="color:red">{{ $errors->first('question.body') }}</p>
 	                </div>
 	                <div class="d-flex justify-content-between">
-						<input class="form-control form-control" id="question_file" name="question_file" type="file">
+						<input class="form-control form-control" id="question_file" name="question_file" type="file" accept="image/*,.aac,.m4a,.mp1,.mp2,.mp3,.mpg,.mpeg,.oga,.ogg,.wav,.wabm">
 	      				<input type="submit" value="投稿する" class="btn btn-primary ml-5"/>
 					</div>
 		      		<input type="hidden" name="question[user_name]" value="{{ Auth::user()->name }}"/>
 		      		<input type="hidden" name="user_id" value="{{ Auth::user()->id }}"/>
 		      		<input type="hidden" name="question_id" value="{{ $question->id }}"/>
 				</form>
+				<p class="mb-0" style="font-size: 15px; opacity: 0.7;">画像、音声ファイルを選択</p>
 				<input class="btn btn-outline-danger btn-sm mt-2" type="button" id="file_clear" value="ファイル選択解除" onclick="fileClear();"/>
 			</div>
 		</main>
