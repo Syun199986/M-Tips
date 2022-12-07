@@ -80,9 +80,10 @@
 	                </div>
 						@if($answer->file_path == NULL)
 			                <div class="d-flex justify-content-between">
-								<input class="form-control form-control" id="answer_file" name="answer_file" type="file">
+								<input class="form-control form-control" id="answer_file" name="answer_file" type="file" accept="image/*,.aac,.m4a,.mp1,.mp2,.mp3,.mpg,.mpeg,.oga,.ogg,.wav,.wabm">
 			      				<input type="submit" value="編集を完了" class="btn btn-primary ml-5"/>
 							</div>
+							<p class="mb-0" style="font-size: 15px; opacity: 0.7;">画像、音声ファイルを選択</p>
 							<input class="btn btn-outline-danger btn-sm mt-2" type="button" id="file_clear" value="ファイル選択解除" onclick="fileClear();"/>
 						@else
 		               	<div class="d-flex justify-content-between">
@@ -92,14 +93,33 @@
 		     				<input type="submit" value="編集を完了" class="btn btn-primary ml-5"/>
 						</div>
 						<div class="my-3">
-							@if(strrpos($answer->file_path, '.png'))
+							@if(
+								strrpos($answer->file_path, '.gif')
+								|| strrpos($answer->file_path, '.jpeg')
+								|| strrpos($answer->file_path, '.jpg')
+								|| strrpos($answer->file_path, '.png')
+								|| strrpos($answer->file_path, '.bmp')
+								|| strrpos($answer->file_path, '.svg')
+								)
 							    <img src="{{ $answer->file_path }}">
-							@elseif(strrpos($answer->file_path, '.mp3'))
+							@elseif(
+								strrpos($answer->file_path, '.aac')
+								|| strrpos($answer->file_path, '.m4a')
+								|| strrpos($answer->file_path, '.mp1')
+								|| strrpos($answer->file_path, '.mp2')
+								|| strrpos($answer->file_path, '.mp3')
+								|| strrpos($answer->file_path, '.mpg')
+								|| strrpos($answer->file_path, '.mpeg')
+								|| strrpos($answer->file_path, '.oga')
+								|| strrpos($answer->file_path, '.ogg')
+								|| strrpos($answer->file_path, '.wav')
+								|| strrpos($answer->file_path, '.wabm')
+									)
 								<audio controls src="{{ $answer->file_path }}">
 						            <a href="{{ $answer->file_path }}">
 						            	Download audio
-		           					</a>
-		           				</audio>
+	            					</a>
+	            				</audio>
 							@endif
 						</div>
 					@endif

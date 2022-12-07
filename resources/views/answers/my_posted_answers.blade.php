@@ -69,7 +69,7 @@
 				<!--</form>-->
 			</div>
 			@foreach ($user_answers as $answer)
-				<div class="answers container text-center border-gray-300 border-1 rounded-3 mb-3 px-4 py-2 bg-white">
+				<div class="answers container text-center border-gray-300 border-1 rounded-3 mt-3 px-4 py-2 bg-white">
 					<div class='answer'>
 						<div class="d-flex justify-content-between">
 							<div>
@@ -104,9 +104,28 @@
 						</div>
 						<p class='body row align-items-start text-left' style="font-size: 18px; white-space: pre-wrap;">{{ $answer->body }}</p>
 						<div class="flex justify-center">
-							@if(strrpos($answer->file_path, '.png'))
+							@if(
+								strrpos($answer->file_path, '.gif')
+								|| strrpos($answer->file_path, '.jpeg')
+								|| strrpos($answer->file_path, '.jpg')
+								|| strrpos($answer->file_path, '.png')
+								|| strrpos($answer->file_path, '.bmp')
+								|| strrpos($answer->file_path, '.svg')
+								)
 							    <img src="{{ $answer->file_path }}">
-							@elseif(strrpos($answer->file_path, '.mp3'))
+							@elseif(
+								strrpos($answer->file_path, '.aac')
+								|| strrpos($answer->file_path, '.m4a')
+								|| strrpos($answer->file_path, '.mp1')
+								|| strrpos($answer->file_path, '.mp2')
+								|| strrpos($answer->file_path, '.mp3')
+								|| strrpos($answer->file_path, '.mpg')
+								|| strrpos($answer->file_path, '.mpeg')
+								|| strrpos($answer->file_path, '.oga')
+								|| strrpos($answer->file_path, '.ogg')
+								|| strrpos($answer->file_path, '.wav')
+								|| strrpos($answer->file_path, '.wabm')
+									)
 								<audio controls src="{{ $answer->file_path }}">
 						            <a href="{{ $answer->file_path }}">
 						            	Download audio

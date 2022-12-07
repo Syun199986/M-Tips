@@ -59,14 +59,33 @@
 					<!--<p class="row align-items-start">音楽カテゴリ：{{ $question->category_id }}</p>-->
 					<p class='body row align-items-start text-left' style="font-size: 18px; white-space: pre-wrap;">{{ $question->body }}</p>
 					<div class="flex justify-center">
-						@if(strrpos($question->file_path, '.png'))
+						@if(
+							strrpos($question->file_path, '.gif')
+							|| strrpos($question->file_path, '.jpeg')
+							|| strrpos($question->file_path, '.jpg')
+							|| strrpos($question->file_path, '.png')
+							|| strrpos($question->file_path, '.bmp')
+							|| strrpos($question->file_path, '.svg')
+							)
 						    <img src="{{ $question->file_path }}">
-						@elseif(strrpos($question->file_path, '.mp3'))
+						@elseif(
+							strrpos($question->file_path, '.aac')
+							|| strrpos($question->file_path, '.m4a')
+							|| strrpos($question->file_path, '.mp1')
+							|| strrpos($question->file_path, '.mp2')
+							|| strrpos($question->file_path, '.mp3')
+							|| strrpos($question->file_path, '.mpg')
+							|| strrpos($question->file_path, '.mpeg')
+							|| strrpos($question->file_path, '.oga')
+							|| strrpos($question->file_path, '.ogg')
+							|| strrpos($question->file_path, '.wav')
+							|| strrpos($question->file_path, '.wabm')
+								)
 							<audio controls src="{{ $question->file_path }}">
 					            <a href="{{ $question->file_path }}">
 					            	Download audio
-	           					</a>
-	           				</audio>
+            					</a>
+            				</audio>
 						@endif
 					</div>
 				</div>
@@ -78,36 +97,17 @@
 	                    <h2 class="form-label">Tipsの投稿</h2>
 	                    <textarea class="form-control" name="answer[body]" placeholder="Tipsを入力" rows="3">{{ $answer->body }}</textarea>
 	                </div>
-						@if($answer->file_path == NULL)
-			                <div class="d-flex justify-content-between">
-								<input class="form-control form-control" id="answer_file" name="answer_file" type="file">
-			      				<input type="submit" value="Give Tips!" class="btn btn-warning ml-5"/>
-							</div>
-							<input class="btn btn-outline-danger btn-sm mt-2" type="button" id="file_clear" value="ファイル選択解除" onclick="fileClear();"/>
-						@else
-		               	<div class="d-flex justify-content-between">
-							<button class="btn btn-outline-danger btn-sm" type="submit" formaction="/answers/{{ $answer->id }}/delete_file" id="delete_file">
-								ファイルを削除
-							</button>								
-		     				<input type="submit" value="Give Tips!" class="btn btn-warning ml-5"/>
+		                <div class="d-flex justify-content-between">
+							<input class="form-control form-control" id="answer_file" name="answer_file" type="file" accept="image/*,.aac,.m4a,.mp1,.mp2,.mp3,.mpg,.mpeg,.oga,.ogg,.wav,.wabm">
+		      				<input type="submit" value="Give Tips!" class="btn btn-warning ml-5"/>
 						</div>
-						<div class="my-3">
-							@if(strrpos($answer->file_path, '.png'))
-							    <img src="{{ $answer->file_path }}">
-							@elseif(strrpos($answer->file_path, '.mp3'))
-								<audio controls src="{{ $answer->file_path }}">
-						            <a href="{{ $answer->file_path }}">
-						            	Download audio
-		           					</a>
-		           				</audio>
-							@endif
-						</div>
-					@endif
 		      		<input type="hidden" name="answer[user_name]" value="{{ Auth::user()->name }}"/>
 		      		<input type="hidden" name="answer[question_id]" value="{{ $question->id }}"/>
 		      		<input type="hidden" name="user_id" value="{{ Auth::user()->id }}"/>
 		      		<input type="hidden" name="answer_id" value="{{ $answer->id }}"/>
 				</form>
+				<p class="mb-0" style="font-size: 15px; opacity: 0.7;">画像、音声ファイルを選択</p>
+				<input class="btn btn-outline-danger btn-sm mt-2" type="button" id="file_clear" value="ファイル選択解除" onclick="fileClear();"/>
 			</div>
 		</main>
 	</body>

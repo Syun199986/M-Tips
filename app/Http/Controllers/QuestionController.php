@@ -76,11 +76,31 @@ class QuestionController extends Controller
         //ファイルの保存
         if($req->question_file){
         
-            if($req->question_file->extension() == 'gif' 
-            || $req->question_file->extension() == 'jpeg' 
-            || $req->question_file->extension() == 'jpg' 
-            || $req->question_file->extension() == 'png'
-            || $req->question_file->extension() == 'mp3')
+            if(
+                //画像ファイル
+                $req->question_file->extension() == 'gif' 
+                || $req->question_file->extension() == 'jpeg' 
+                || $req->question_file->extension() == 'jpg' 
+                || $req->question_file->extension() == 'png'
+                || $req->question_file->extension() == 'bmp'
+                || $req->question_file->extension() == 'svg'
+                //音声ファイル
+                || $req->question_file->extension() == 'aac'
+                || $req->question_file->extension() == 'm4a'
+                || $req->question_file->extension() == 'mp1'
+                || $req->question_file->extension() == 'mp2'
+                || $req->question_file->extension() == 'mp3'
+                || $req->question_file->extension() == 'mpg'
+                || $req->question_file->extension() == 'mpeg'
+                || $req->question_file->extension() == 'oga'
+                || $req->question_file->extension() == 'ogg'
+                || $req->question_file->extension() == 'wav'
+                || $req->question_file->extension() == 'wabm'
+                //動画ファイル
+                //|| $req->question_file->extension() == 'mp4'
+                //|| $req->question_file->extension() == 'm4v'
+                //|| $req->question_file->extension() == 'ogv'
+            )
             {
                 $req->file('question_file')->storeAs('public/question_file', $question->id.'.'.$req->question_file->extension());
                 $question->where('id', $question->id)->update(['file_path' => "/storage/question_file/".$question->id.'.'.$req->question_file->extension()]);
@@ -106,11 +126,31 @@ class QuestionController extends Controller
         //ファイルの保存
         if($req->question_file){
         
-            if($req->question_file->extension() == 'gif' 
-            || $req->question_file->extension() == 'jpeg' 
-            || $req->question_file->extension() == 'jpg' 
-            || $req->question_file->extension() == 'png'
-            || $req->question_file->extension() == 'mp3')
+            if(
+                //画像ファイル
+                $req->question_file->extension() == 'gif' 
+                || $req->question_file->extension() == 'jpeg' 
+                || $req->question_file->extension() == 'jpg' 
+                || $req->question_file->extension() == 'png'
+                || $req->question_file->extension() == 'bmp'
+                || $req->question_file->extension() == 'svg'
+                //音声ファイル
+                || $req->question_file->extension() == 'aac'
+                || $req->question_file->extension() == 'm4a'
+                || $req->question_file->extension() == 'mp1'
+                || $req->question_file->extension() == 'mp2'
+                || $req->question_file->extension() == 'mp3'
+                || $req->question_file->extension() == 'mpg'
+                || $req->question_file->extension() == 'mpeg'
+                || $req->question_file->extension() == 'oga'
+                || $req->question_file->extension() == 'ogg'
+                || $req->question_file->extension() == 'wav'
+                || $req->question_file->extension() == 'wabm'
+                //動画ファイル
+                //|| $req->question_file->extension() == 'mp4'
+                //|| $req->question_file->extension() == 'm4v'
+                //|| $req->question_file->extension() == 'ogv'
+            )
             {
                 $req->file('question_file')->storeAs('public/question_file', $question->id.'.'.$req->question_file->extension());
                 $question->where('id', $question->id)->update(['file_path' => "/storage/question_file/".$question->id.'.'.$req->question_file->extension()]);

@@ -118,9 +118,28 @@
 						<!--<p class="row align-items-start">音楽カテゴリ：{{ $question->category_id }}</p>-->
 						<p class='body row align-items-start text-left' style="font-size: 18px; white-space: pre-wrap;">{{ $question->body }}</p>
 						<div class="flex justify-center">
-							@if(strrpos($question->file_path, '.png'))
+							@if(
+								strrpos($question->file_path, '.gif')
+								|| strrpos($question->file_path, '.jpeg')
+								|| strrpos($question->file_path, '.jpg')
+								|| strrpos($question->file_path, '.png')
+								|| strrpos($question->file_path, '.bmp')
+								|| strrpos($question->file_path, '.svg')
+								)
 							    <img src="{{ $question->file_path }}">
-							@elseif(strrpos($question->file_path, '.mp3'))
+							@elseif(
+								strrpos($question->file_path, '.aac')
+								|| strrpos($question->file_path, '.m4a')
+								|| strrpos($question->file_path, '.mp1')
+								|| strrpos($question->file_path, '.mp2')
+								|| strrpos($question->file_path, '.mp3')
+								|| strrpos($question->file_path, '.mpg')
+								|| strrpos($question->file_path, '.mpeg')
+								|| strrpos($question->file_path, '.oga')
+								|| strrpos($question->file_path, '.ogg')
+								|| strrpos($question->file_path, '.wav')
+								|| strrpos($question->file_path, '.wabm')
+									)
 								<audio controls src="{{ $question->file_path }}">
 						            <a href="{{ $question->file_path }}">
 						            	Download audio

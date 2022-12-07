@@ -61,11 +61,31 @@ class AnswerController extends Controller
         //ファイルの保存
         if($req->answer_file){
         
-            if($req->answer_file->extension() == 'gif' 
-            || $req->answer_file->extension() == 'jpeg' 
-            || $req->answer_file->extension() == 'jpg' 
-            || $req->answer_file->extension() == 'png'
-            || $req->answer_file->extension() == 'mp3')
+            if(
+                //画像ファイル
+                $req->answer_file->extension() == 'gif' 
+                || $req->answer_file->extension() == 'jpeg' 
+                || $req->answer_file->extension() == 'jpg' 
+                || $req->answer_file->extension() == 'png'
+                || $req->answer_file->extension() == 'bmp'
+                || $req->answer_file->extension() == 'svg'
+                //音声ファイル
+                || $req->answer_file->extension() == 'aac'
+                || $req->answer_file->extension() == 'm4a'
+                || $req->answer_file->extension() == 'mp1'
+                || $req->answer_file->extension() == 'mp2'
+                || $req->answer_file->extension() == 'mp3'
+                || $req->answer_file->extension() == 'mpg'
+                || $req->answer_file->extension() == 'mpeg'
+                || $req->answer_file->extension() == 'oga'
+                || $req->answer_file->extension() == 'ogg'
+                || $req->answer_file->extension() == 'wav'
+                || $req->answer_file->extension() == 'wabm'
+                //動画ファイル
+                //|| $req->answer_file->extension() == 'mp4'
+                //|| $req->answer_file->extension() == 'm4v'
+                //|| $req->answer_file->extension() == 'ogv'
+            )
             {
                 $req->file('answer_file')->storeAs('public/answer_file', $answer->id.'.'.$req->answer_file->extension());
                 $answer->where('id', $answer->id)->update(['file_path' => "/storage/answer_file/".$answer->id.'.'.$req->answer_file->extension()]);
@@ -91,11 +111,31 @@ class AnswerController extends Controller
         //ファイルの保存
         if($req->answer_file){
         
-            if($req->answer_file->extension() == 'gif' 
-            || $req->answer_file->extension() == 'jpeg' 
-            || $req->answer_file->extension() == 'jpg' 
-            || $req->answer_file->extension() == 'png'
-            || $req->answer_file->extension() == 'mp3')
+            if(
+                //画像ファイル
+                $req->answer_file->extension() == 'gif' 
+                || $req->answer_file->extension() == 'jpeg' 
+                || $req->answer_file->extension() == 'jpg' 
+                || $req->answer_file->extension() == 'png'
+                || $req->answer_file->extension() == 'bmp'
+                || $req->answer_file->extension() == 'svg'
+                //音声ファイル
+                || $req->answer_file->extension() == 'aac'
+                || $req->answer_file->extension() == 'm4a'
+                || $req->answer_file->extension() == 'mp1'
+                || $req->answer_file->extension() == 'mp2'
+                || $req->answer_file->extension() == 'mp3'
+                || $req->answer_file->extension() == 'mpg'
+                || $req->answer_file->extension() == 'mpeg'
+                || $req->answer_file->extension() == 'oga'
+                || $req->answer_file->extension() == 'ogg'
+                || $req->answer_file->extension() == 'wav'
+                || $req->answer_file->extension() == 'wabm'
+                //動画ファイル
+                //|| $req->answer_file->extension() == 'mp4'
+                //|| $req->answer_file->extension() == 'm4v'
+                //|| $req->answer_file->extension() == 'ogv'
+            )
             {
                 $req->file('answer_file')->storeAs('public/answer_file', $answer->id.'.'.$req->answer_file->extension());
                 $answer->where('id', $answer->id)->update(['file_path' => "/storage/answer_file/".$answer->id.'.'.$req->answer_file->extension()]);
