@@ -1,3 +1,36 @@
+<h1>M-Tips</h1>
+
+<h2>制作背景</h2>
+音楽が好きな人同士の情報や悩みを共有し、それに対して気軽にアドバイスできる、音楽特化のコミュニティーサイトを作りたいと思い制作しました。<br>
+より気軽にアドバイスし合えるように、「Tips(ちょっとしたコツ・ヒント)」を与え合うというテーマを設定しています
+
+<h2>主な使用技術</h2>
+・Laravel<br>
+・PHP<br>
+・MySQL<br>
+・Bootstrap<br>
+・EC2
+
+<h2>URL</h2>
+https://www.m-tips.link
+
+<h2>今後の課題</h2>
+<h3>機能について</h3>
+・質問やTipsへのいいね機能やブックマーク機能<br>
+・通知機能(自分の質問にTipsが追加された際など)<br>
+・タグ機能(質問を投稿する際のユーザー任意のタグ付け、それらのタグ検索など)
+<h3>デザイン・UI/UXについて</h3>
+・モバイル端末での表示が見にくい部分の改善<br>
+・より"音楽要素"を感じさせるサイトデザイン
+
+<h2>今後の展望</h2>
+<h3>ユーザーからの意見を募る</h3>
+周りの人に実際に使ってもらったり、サイトに意見や感想の投稿ページを作るなど
+<h3>よりコミュニティーサイト化</h3>
+質問のやり取りだけでなく、ユーザー同士のフォロー・フォロワー機能、ユーザー任意で作成できるスペース機能といった、ユーザー同士の交流に焦点を当てたサイト作り
+
+<h1>Laravel</h1>
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
