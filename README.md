@@ -29,6 +29,14 @@ https://www.m-tips.link
 <h3>よりコミュニティーサイト化</h3>
 質問のやり取りだけでなく、ユーザー同士のフォロー・フォロワー機能、ユーザー任意で作成できるスペース機能といった、ユーザー同士の交流に焦点を当てたサイト作り
 
+<h2>アップデート</h2>
+<h3>2022.12.02</h3>
+仮完成
+<h3>2022.12.07</h3>
+添付ファイルのバリデーション修正
+<h3>2022.12.20</h3>
+ハンバーガーメニューの実装(レスポンシブル対応)
+
 <h1>Laravel</h1>
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
