@@ -84,6 +84,47 @@
 			<!--		<option value="favorite">気になる!が多い順</option>-->
 			<!--	</select>-->
 			<!--</form>-->
+			<div class="questions container text-center border-gray-300 border-2 rounded-3 mb-5 px-4 py-2 bg-white">
+				<div class='question'>
+					<div class="d-flex justify-content-between">
+						<h2 class='title row align-items-start mb-0'>{{ $question->title }}</h2>
+					</div>
+					<p class="row align-items-start mb-0" style="font-size: 15px; opacity: 0.7;">質問ユーザー：{{ $question->user_name }}</p>
+					<p class="row align-items-start" style="font-size: 15px; opacity: 0.7;">投稿日時：{{ $question->created_at }}</p>
+					<!--<p class="row align-items-start">音楽カテゴリ：{{ $question->category_id }}</p>-->
+					<p class='body row align-items-start text-left' style="font-size: 18px; white-space: pre-wrap;">{{ $question->body }}</p>
+					<div class="flex justify-center">
+						@if(
+							strrpos($question->file_path, '.gif')
+							|| strrpos($question->file_path, '.jpeg')
+							|| strrpos($question->file_path, '.jpg')
+							|| strrpos($question->file_path, '.png')
+							|| strrpos($question->file_path, '.bmp')
+							|| strrpos($question->file_path, '.svg')
+							)
+						    <img src="{{ $question->file_path }}">
+						@elseif(
+							strrpos($question->file_path, '.aac')
+							|| strrpos($question->file_path, '.m4a')
+							|| strrpos($question->file_path, '.mp1')
+							|| strrpos($question->file_path, '.mp2')
+							|| strrpos($question->file_path, '.mp3')
+							|| strrpos($question->file_path, '.mpg')
+							|| strrpos($question->file_path, '.mpeg')
+							|| strrpos($question->file_path, '.oga')
+							|| strrpos($question->file_path, '.ogg')
+							|| strrpos($question->file_path, '.wav')
+							|| strrpos($question->file_path, '.wabm')
+								)
+							<audio controls src="{{ $question->file_path }}">
+					            <a href="{{ $question->file_path }}">
+					            	Download audio
+            					</a>
+            				</audio>
+						@endif
+					</div>
+				</div>
+			</div>
 			@foreach ($answers as $answer)
 				<div class="answers container text-center border-gray-300 border-1 rounded-3 mb-3 px-4 py-2 bg-white">
 					<div class='answer'>
