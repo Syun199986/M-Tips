@@ -49,7 +49,7 @@
 			</nav>
 		</header>
 		<main>
-			<div class="questions container text-center border-gray-300 border-1 rounded-3 mt-5 mb-3 px-4 py-2 bg-white">
+			<div class="questions container text-center border-gray-300 border-2 rounded-3 mt-5 mb-3 px-4 py-2 bg-white">
 				<div class='question'>
 					<div class="d-flex justify-content-between">
 						<h2 class='title row align-items-start mb-0'>{{ $question->title }}</h2>

@@ -149,7 +149,7 @@ class AnswerController extends Controller
         $answer->delete();
         return back();
     }
-    public function myPostedAnswers(Answer $answer, User $user)
+    public function myPostedAnswers(Answer $answer, Question $question, User $user)
     {
         $user_id = Auth::user()->id;
 
