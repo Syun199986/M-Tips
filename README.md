@@ -7,6 +7,8 @@
 <h2>主な使用技術</h2>
 ・Laravel<br>
 ・PHP<br>
+・HTML/CSS<br>
+・JavaScript<br>
 ・MySQL<br>
 ・Bootstrap<br>
 ・EC2
