@@ -76,8 +76,8 @@
 			<form id="dropdown" class="d-flex flex-row-reverse">
 				<botton type="button" class="btn btn-sm btn-outline-primary rounded px-2 my-3 mx-2 w-auto d-flex align-items-center" onclick="sort()">並べ替え</botton>
 				<select class="form-control-sm w-auto my-3" aria-label="Default select example" name="sort">
-					<option selected>▼並べ替え</option>
-					<option value="new">新着順</option>
+					<!--<option selected>▼並べ替え</option>-->
+					<option selected value="new">新着順</option>
 					<option value="old">古い順</option>
 					<!--<option value="favorite">気になる!が多い順</option>-->
 				</select>
@@ -168,6 +168,10 @@
 					</div>
 				</div>
 			@endforeach
+			<div class="pagination justify-content-center">
+				{{ $questions->links() }}
+				<!--{{ $questions->count() }}-->
+			</div>
 		</main>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 	</body>

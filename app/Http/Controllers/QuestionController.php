@@ -44,16 +44,12 @@ class QuestionController extends Controller
             
         //並べ替え機能
         $select = $request->sort;
-        
+
         if($select == 'old'){
-            $questions = $query->orderBy('created_at', 'asc')->get();
-        } elseif($select == 'new') {
-            $questions = $query->orderBy('created_at', 'desc')->get();
-        } else {
-            $questions = $query->get();
+            $questions = $query->orderBy('created_at', 'asc')->paginate(3);
         }
         
-        $questions = $query->get();
+        $questions = $query->orderBy('created_at', 'desc')->paginate(3);
 
         return view('questions/home', compact('questions', 'answer', 'keyword'));
         
