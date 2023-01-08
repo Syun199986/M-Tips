@@ -66,6 +66,13 @@
 	                    </div>
 	                    <p class="title__error" style="color:red">{{ $errors->first('question.title') }}</p>
 		                <p class="title__error" style="color:red">{{ $errors->first('question.category_id') }}</p>
+		                <!--<div>-->
+		                <!--	<h2>質問タグ</h2>-->
+		                <!--	<div class="d-flex align-items-center">-->
+			               <!-- 	<input type="text" name="" class="form-control mr-2" placeholder="質問タグを入力" value="" style="width: 150px;">-->
+			               <!-- 	<button type="button" class="btn btn-success btn-sm">追加</button>-->
+		                <!--	</div>-->
+		                <!--</div>-->
 	                </div>
 	                <div class="mb-3">
 	                    <h2 class="form-label">質問文</h2>

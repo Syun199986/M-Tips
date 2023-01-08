@@ -25,7 +25,7 @@ class Question extends Model
         } elseif($select == 'new') {
             return $this->orderBy('created_at', 'desc')->get();
         } else {
-            return $this->all();
+            return $this->orderBy('created_at', 'desc')->get();;
         }    
     }
     public function users()
